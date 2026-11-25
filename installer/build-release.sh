@@ -21,6 +21,7 @@ cp -a "$ROOT_DIR/modul" "$ROOT_DIR/latihan" "$ROOT_DIR/kunci_jawaban" "$ROOT_DIR
       "$LINUX_STAGE/payload/"
 cp -a "$ROOT_DIR/installer/sublime_bundle" "$LINUX_STAGE/payload/installer/"
 cp -a "$ROOT_DIR/installer/install-linux.sh" "$LINUX_STAGE/install-linux.sh"
+cp -a "$ROOT_DIR/installer/CARA_INSTALL.txt" "$LINUX_STAGE/CARA_INSTALL.txt"
 chmod +x "$LINUX_STAGE/install-linux.sh"
 find "$LINUX_STAGE" -name "__pycache__" -type d -exec rm -rf {} +
 
@@ -53,6 +54,7 @@ cp -a "$ROOT_DIR/modul" "$ROOT_DIR/latihan" "$ROOT_DIR/kunci_jawaban" "$ROOT_DIR
 cp -a "$ROOT_DIR/installer/sublime_bundle" "$WIN_STAGE/payload/installer/"
 cp -a "$ROOT_DIR/installer/INSTALL_KODING_PENGGALANG.bat" "$WIN_STAGE/"
 cp -a "$ROOT_DIR/installer/install-windows.ps1" "$WIN_STAGE/"
+cp -a "$ROOT_DIR/installer/CARA_INSTALL.txt" "$WIN_STAGE/"
 find "$WIN_STAGE" -name "__pycache__" -type d -exec rm -rf {} +
 
 WIN_ZIP="$DIST_DIR/koding-penggalang-$VERSION-windows.zip"

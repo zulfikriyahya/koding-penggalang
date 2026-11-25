@@ -1,0 +1,39 @@
+================================================================
+  PANDUAN INSTALASI 1-KLIK — KODING PENGGALANG (PYTHON 3)
+================================================================
+
+A. CARA MEMASANG DI WINDOWS 10 / 11
+----------------------------------------------------------------
+1. Ekstrak file ZIP ini terlebih dahulu (klik kanan -> Extract All).
+2. Buka folder hasil ekstrak, lalu klik dua kali:
+      INSTALL_KODING_PENGGALANG.bat
+3. Jika muncul layar biru Windows Defender SmartScreen:
+      klik "More info" -> klik "Run anyway"
+4. Tunggu proses selesai hingga muncul:
+      INSTALASI SELESAI 100%!
+5. Selesai! Di Desktop akan muncul 2 pintasan:
+   - "Penguji Koding Penggalang" (aplikasi GUI cek jawaban)
+   - "Modul PDF & Soal Koding Penggalang" (folder 3 PDF siap cetak)
+   Di CMD/PowerShell baru, Anda juga bisa mengetik:
+      cek 1   |   cekall   |   cekgui
+
+B. CARA MEMASANG DI LINUX (Debian/Ubuntu/Mint/Fedora/Arch)
+----------------------------------------------------------------
+1. Buka Terminal di folder tempat file ini berada.
+2. Jika memakai file .run, jalankan:
+      chmod +x KodingPenggalang-Installer-Linux-v1.0.0.run
+      ./KodingPenggalang-Installer-Linux-v1.0.0.run
+   Jika memakai hasil ekstrak .tar.gz, jalankan:
+      chmod +x install-linux.sh
+      ./install-linux.sh
+3. Masukkan password sudo jika diminta untuk memasang Python 3,
+   GTK 3, atau Sublime Text 4.
+4. Selesai! Semua modul PDF, latihan soal, dan kunci jawaban
+   tersimpan di ~/koding-penggalang/ beserta ikon Desktop & Menu.
+
+Opsi Tanpa Sublime Text:
+- Linux   : ./install-linux.sh --no-sublime
+- Windows : powershell -ExecutionPolicy Bypass -File install-windows.ps1 -NoSublime
+
+Repositori & Panduan Bergambar:
+https://github.com/zulfikriyahya/koding-penggalang

@@ -11,20 +11,37 @@ Disusun secara faktual berdasarkan:
 
 ---
 
-## Unduh & Pasang 1-Klik (GitHub Releases)
+## Panduan Instalasi 1-Klik (Bergambar)
 
-Buka halaman **[Releases (`v1.0.0`)](https://github.com/zulfikriyahya/koding-penggalang/releases/latest)** untuk mengunduh:
+Unduh paket rilis di halaman **[GitHub Releases (`v1.0.0`)](https://github.com/zulfikriyahya/koding-penggalang/releases/latest)**.
 
-### 1. Installer Lengkap 1-Bundle (Python 3 + Sublime Text 4 + Helper Python + Modul PDF + Soal + Kunci + Penguji CLI & GUI)
-- **Windows 10 / 11:** Unduh `koding-penggalang-v1.0.0-windows.zip` → ekstrak → klik dua kali **`INSTALL_KODING_PENGGALANG.bat`**.
-- **Linux (Debian / Ubuntu / Mint / Fedora / Arch):** Unduh `KodingPenggalang-Installer-Linux-v1.0.0.run` (atau `koding-penggalang-v1.0.0-linux.tar.gz`) lalu jalankan:
-  ```bash
-  chmod +x KodingPenggalang-Installer-Linux-v1.0.0.run
-  ./KodingPenggalang-Installer-Linux-v1.0.0.run
-  ```
-  *(Tambahkan `--no-sublime` di Linux atau `-NoSublime` di PowerShell jika hanya ingin memasang modul & penguji tanpa Sublime Text.)*
+### A. Windows 10 / 11
 
-### 2. Unduh Langsung PDF, Contoh Soal & Kunci Jawaban (Tanpa Installer)
+![Panduan Instalasi Koding Penggalang di Windows](docs/images/panduan-install-windows.png)
+
+1. Unduh **`koding-penggalang-v1.0.0-windows.zip`** dari halaman **[Releases](https://github.com/zulfikriyahya/koding-penggalang/releases/latest)**.
+2. Klik kanan file ZIP → pilih **Extract All...** (*Ekstrak Semua*).
+3. Buka folder hasil ekstrak, lalu klik dua kali **`INSTALL_KODING_PENGGALANG.bat`**.
+   - *(Jika muncul layar biru Windows Defender SmartScreen, klik **More info** → **Run anyway**.)*
+4. Selesai! Pintasan **Penguji Koding Penggalang** dan **Modul PDF & Soal** langsung muncul di Desktop.
+
+---
+
+### B. Linux (Debian / Ubuntu / Mint / Fedora / Arch)
+
+![Panduan Instalasi Koding Penggalang di Linux](docs/images/panduan-install-linux.png)
+
+1. Unduh **`KodingPenggalang-Installer-Linux-v1.0.0.run`** dari halaman **[Releases](https://github.com/zulfikriyahya/koding-penggalang/releases/latest)**.
+2. Buka Terminal di folder Unduhan, lalu jalankan:
+   ```bash
+   chmod +x KodingPenggalang-Installer-Linux-v1.0.0.run
+   ./KodingPenggalang-Installer-Linux-v1.0.0.run
+   ```
+   *(Tambahkan `--no-sublime` di Linux atau `-NoSublime` di PowerShell Windows jika hanya ingin memasang modul & penguji tanpa Sublime Text.)*
+
+---
+
+### C. Unduh Langsung PDF, Contoh Soal & Kunci Jawaban (Tanpa Installer)
 Di halaman **[Releases](https://github.com/zulfikriyahya/koding-penggalang/releases/latest)** tersedia langsung file siap unduh:
 - `01_Modul_Belajar_Pemrograman_dan_Python3_Penggalang.pdf` *(7 halaman A4)*
 - `02_Referensi_Cepat_Sintaks_Python3_Saat_Lomba.pdf` *(2 halaman A4 bolak-balik)*
@@ -33,24 +50,24 @@ Di halaman **[Releases](https://github.com/zulfikriyahya/koding-penggalang/relea
 
 ---
 
-## Struktur Proyek
+## Tampilan Aplikasi Penguji Jawaban (GUI & Terminal)
 
-```text
-koding-penggalang/
-├── modul/
-│   ├── 01_Modul_Belajar_Pemrograman_dan_Python3_Penggalang.pdf   (7 hal. A4)
-│   ├── 01_Modul_Belajar_Pemrograman_dan_Python3_Penggalang.html
-│   ├── 02_Referensi_Cepat_Sintaks_Python3_Saat_Lomba.pdf         (2 hal. A4)
-│   ├── 02_Referensi_Cepat_Sintaks_Python3_Saat_Lomba.html
-│   ├── 03_Paket_Latihan_4_Soal_Lomba_Penggalang.pdf              (2 hal. A4)
-│   └── 03_Paket_Latihan_4_Soal_Lomba_Penggalang.html
-├── latihan/                  # Template file jawaban siswa (soal1_ELANG.py .. soal4_ELANG.py)
-├── kunci_jawaban/            # Kunci jawaban terverifikasi 100% (soal1_kunci.py .. soal4_kunci.py)
-├── penguji/
-│   └── core.py               # Mesin penguji offline (20 kasus uji + validator Juknis AST)
-├── installer/                # Installer 1-klik Linux & Windows + konfigurasi Sublime Text Python Helper
-├── cek_jawaban.py            # Penguji otomatis lewat terminal (CLI)
-└── cek_jawaban_gui.py        # Aplikasi penguji grafis desktop (GTK 3 Linux + Tkinter Windows)
+### 1. Aplikasi Desktop GUI (`cekgui`) — GTK 3 (Linux) & Tkinter (Windows)
+Satu klik untuk menguji 1 file atau 1 folder jawaban tim, memantau aturan Juknis (`input()` kosong), melihat tabel 20 kasus uji, serta membandingkan **Input Uji**, **Output Siswa**, dan **Kunci Jawaban** secara berdampingan:
+
+![Tampilan Aplikasi GUI Penguji Koding Penggalang](docs/images/tampilan-gui-penguji.png)
+
+### 2. Penguji Terminal Cepat (`cek` / `cekall`)
+
+![Tampilan Penguji CLI Koding Penggalang](docs/images/tampilan-cli-cek.png)
+
+```bash
+cek soal1_ELANG.py        # Uji 1 file jawaban (deteksi nomor soal otomatis)
+cek 1                     # Uji cepat Soal 1 (atau 2, 3, 4)
+cek 3 jawaban_morse.py    # Uji file dengan nomor soal manual
+cekall                    # Uji semua soal 1–4 + rekap skor 0–100
+cek folder_tim/           # Uji seluruh jawaban 1 tim + rekap skor 0–100
+cekgui                    # Buka aplikasi desktop GUI
 ```
 
 ---
@@ -68,22 +85,19 @@ koding-penggalang/
 
 ---
 
-## Cara Menggunakan Penguji Otomatis
+## Struktur Proyek
 
-### 1. Mode Terminal (CLI)
-```bash
-cek soal1_ELANG.py        # Uji 1 file jawaban (deteksi nomor soal otomatis)
-cek 1                     # Uji cepat Soal 1 (atau 2, 3, 4)
-cek 3 jawaban_morse.py    # Uji file dengan nomor soal manual
-cekall                    # Uji semua soal 1–4 + rekap skor 0–100
-cek folder_tim/           # Uji seluruh jawaban 1 tim + rekap skor 0–100
+```text
+koding-penggalang/
+├── docs/images/              # Gambar panduan instalasi & screenshot aplikasi
+├── modul/                    # 3 dokumen final PDF & HTML siap cetak / Google Docs
+├── latihan/                  # Template jawaban siswa (soal1_ELANG.py .. soal4_ELANG.py)
+├── kunci_jawaban/            # Kunci jawaban terverifikasi 100% (soal1_kunci.py .. soal4_kunci.py)
+├── penguji/core.py           # Mesin penguji offline (20 kasus uji + validator Juknis AST)
+├── installer/                # Installer 1-klik Linux & Windows + Sublime Text Python Helper
+├── cek_jawaban.py            # Penguji otomatis lewat terminal (CLI)
+└── cek_jawaban_gui.py        # Aplikasi penguji grafis desktop (GTK 3 Linux + Tkinter Windows)
 ```
-
-### 2. Mode Aplikasi Desktop (GUI — Linux GTK 3 & Windows Tkinter)
-```bash
-cekgui
-```
-Atau klik pintasan Desktop **"Penguji Koding Penggalang"** yang dibuat otomatis oleh installer.
 
 ---
 
