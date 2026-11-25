@@ -375,7 +375,7 @@ def run_gtk_gui(initial_arg: pathlib.Path | None = None) -> None:
                 self.lbl_juknis.set_text("✓ Aturan Juknis aman: semua input() kosong tanpa teks prompt.")
 
             total_score = sum(r.score for r in results)
-            max_score = min(len(results) * 25, 100)
+            max_score = len(results) * 25
             self.lbl_score.set_text(f"{total_score} / {max_score}")
             ctx_s = self.lbl_score.get_style_context()
             for cls in ("score-ok", "score-mid", "score-bad"):
@@ -727,7 +727,7 @@ def run_tk_gui(initial_arg: pathlib.Path | None = None) -> None:
                 )
 
             total_score = sum(r.score for r in results)
-            max_score = min(len(results) * 25, 100)
+            max_score = len(results) * 25
             color = (
                 "#15803d"
                 if (total_score == max_score and not bad_files)

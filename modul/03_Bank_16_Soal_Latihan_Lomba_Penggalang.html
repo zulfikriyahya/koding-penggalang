@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Bank 16 Soal Latihan (4 Paket Simulasi) — Lomba Coding Python Penggalang</title>
+<style>
+  @page {
+    size: A4;
+    margin: 12mm 13mm 13mm 13mm;
+    @bottom-left {
+      content: "Bank 16 Soal Latihan (4 Paket Simulasi) — Lomba Coding Python Penggalang";
+      font-family: Inter, "DejaVu Sans", sans-serif;
+      font-size: 7.8pt;
+      color: #64748b;
+    }
+    @bottom-right {
+      content: "Halaman " counter(page) " / " counter(pages);
+      font-family: Inter, "DejaVu Sans", sans-serif;
+      font-size: 7.8pt;
+      color: #64748b;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: Inter, "DejaVu Sans", sans-serif;
+    font-size: 8.65pt;
+    line-height: 1.4;
+    color: #1e293b;
+    margin: 0;
+  }
+  .banner {
+    background: #0f172a;
+    color: #f8fafc;
+    padding: 10px 15px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+  }
+  .banner h1 { margin: 0 0 2px 0; font-size: 13pt; }
+  .banner p { margin: 0; font-size: 8.2pt; color: #cbd5e1; }
+  .paket-bar {
+    background: #1d4ed8;
+    color: #ffffff;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 9.5pt;
+    font-weight: 700;
+    margin: 0 0 8px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .paket-bar span { font-size: 8pt; font-weight: 500; color: #dbeafe; }
+  .note {
+    background: #f0fdf4;
+    border-left: 4px solid #16a34a;
+    padding: 6px 10px;
+    border-radius: 4px;
+    font-size: 8pt;
+    margin-bottom: 8px;
+  }
+  .soal {
+    border: 1px solid #cbd5e1;
+    border-radius: 7px;
+    padding: 8px 12px;
+    margin-bottom: 9px;
+    page-break-inside: avoid;
+  }
+  .soal-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #2563eb;
+    padding-bottom: 3px;
+    margin-bottom: 5px;
+  }
+  .soal-head h2 { margin: 0; font-size: 10pt; color: #0f172a; }
+  .badge {
+    background: #dbeafe;
+    color: #1e40af;
+    font-size: 7.4pt;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 12px;
+    white-space: nowrap;
+  }
+  h3 { font-size: 8.5pt; color: #0f172a; margin: 5px 0 2px 0; }
+  p { margin: 2px 0 5px 0; }
+  ul { margin: 2px 0 5px 0; padding-left: 16px; }
+  li { margin-bottom: 1px; }
+  pre {
+    background: #f8fafc;
+    border: 1px solid #cbd5e1;
+    border-radius: 5px;
+    padding: 5px 8px;
+    font-family: "Fira Code", "DejaVu Sans Mono", monospace;
+    font-variant-ligatures: none;
+    font-feature-settings: "liga" 0, "calt" 0;
+    font-size: 7.9pt;
+    line-height: 1.36;
+    margin: 2px 0 3px 0;
+    white-space: pre-wrap;
+  }
+  code {
+    font-family: "Fira Code", "DejaVu Sans Mono", monospace;
+    font-variant-ligatures: none;
+    font-feature-settings: "liga" 0, "calt" 0;
+    font-size: 7.9pt;
+    background: #e2e8f0;
+    padding: 1px 3px;
+    border-radius: 3px;
+  }
+  .morse-sample { letter-spacing: 0.8px; }
+  .io-grid { display: flex; gap: 9px; }
+  .io-col { flex: 1; }
+  .pb { page-break-before: always; }
+  table.mini {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 7.5pt;
+    margin: 4px 0 5px 0;
+  }
+  table.mini th, table.mini td {
+    border: 1px solid #cbd5e1;
+    padding: 2px 5px;
+    text-align: left;
+  }
+  table.mini th { background: #e2e8f0; }
+</style>
+</head>
+<body>
+
+<div class="banner">
+  <h1>BANK 16 SOAL LATIHAN LOMBA CODING PYTHON — PRAMUKA PENGGALANG</h1>
+  <p>4 Paket Simulasi Lengkap (Masing-masing 4 Soal · 120 Menit · Skor 0–100) · Total 80 Kasus Uji Otomatis</p>
+</div>
+
+<div class="note">
+  <strong>Cara Latihan:</strong> Buka template di folder <code>latihan/</code> (<code>soal1_ELANG.py</code> s/d <code>soal16_ELANG.py</code>) memakai editor Python pilihanmu. Uji hasil otomatis via aplikasi GUI (<code>cekgui</code>) atau terminal: <code>cek 1</code>, <code>cek paket1</code> s/d <code>cek paket4</code>, atau <code>cekall</code>. <strong>Wajib Juknis: semua <code>input()</code> kosong tanpa teks di dalam kurung!</strong>
+</div>
+
+<!-- ==================== PAKET 1 ==================== -->
+<div class="paket-bar">PAKET 1 — Dasar &amp; Teknik Kepramukaan Inti <span>Soal 1–4 · Waktu 120 Menit · Skor 0–100</span></div>
+
+<div class="soal">
+  <div class="soal-head">
+    <h2>Soal 1 — Kompas, Azimuth &amp; Back Azimuth (<code>soal1_ELANG.py</code>)</h2>
+    <span class="badge">Paket 1 · Mudah · 25%</span>
+  </div>
+  <p>Regu memulai perjalanan menghadap sudut kompas awal <code>S</code> (0–359°), lalu menerima <code>N</code> perintah belok <code>KANAN D</code> (+D°) atau <code>KIRI D</code> (-D°). Hitung: (1) <strong>Azimuth akhir</strong> (<code>0</code>–<code>359</code>), (2) <strong>Back Azimuth</strong> (<code>azimuth + 180</code> jika <code>&lt; 180</code>, atau <code>azimuth - 180</code> jika <code>&gt;= 180</code>), dan (3) <strong>Arah 8 penjuru</strong>: <code>Utara</code> (338–359/0–22), <code>Timur Laut</code> (23–67), <code>Timur</code> (68–112), <code>Tenggara</code> (113–157), <code>Selatan</code> (158–202), <code>Barat Daya</code> (203–247), <code>Barat</code> (248–292), <code>Barat Laut</code> (293–337).</p>
+  <p><strong>Input:</strong> Baris 1: <code>S</code>. Baris 2: <code>N</code>. Diikuti <code>N</code> baris <code>ARAH D</code>. &nbsp;<strong>Output:</strong> <code>Azimuth: &lt;s&gt; (&lt;Arah&gt;)</code> dan <code>Back Azimuth: &lt;b&gt;</code>.</p>
+  <div class="io-grid">
+    <div class="io-col"><strong>Contoh Input:</strong><pre>10
+3
+KANAN 90
+KIRI 120
+KIRI 10</pre></div>
+    <div class="io-col"><strong>Contoh Output:</strong><pre>Azimuth: 330 (Barat Laut)
+Back Azimuth: 150</pre></div>
+  </div>
+</div>
+
+<div class="soal">
+  <div class="soal-head">
+    <h2>Soal 2 — Logistik Tenda &amp; Air Perkemahan (<code>soal2_ELANG.py</code>)</h2>
+    <span class="badge">Paket 1 · Mudah-Menengah · 25%</span>
+  </div>
+  <p>Setiap tenda memuat maksimal <code>K</code> peserta. Setiap peserta butuh <code>2.5</code> liter air per hari selama <code>H</code> hari, dengan stok air <code>L</code> liter.</p>
+  <p><strong>Input:</strong> 1 baris <code>P K H L</code>. &nbsp;<strong>Output:</strong> Baris 1 <code>Tenda: &lt;bulat_atas&gt;</code>, Baris 2 <code>Air: &lt;2_desimal&gt; L</code>, Baris 3 <code>Status: CUKUP</code> jika <code>L &gt;= butuh</code> atau <code>Status: KURANG &lt;selisih_2_desimal&gt; L</code>.</p>
+  <div class="io-grid">
+    <div class="io-col"><strong>Contoh Input:</strong><pre>17 6 3 100</pre></div>
+    <div class="io-col"><strong>Contoh Output:</strong><pre>Tenda: 3
+Air: 127.50 L
+Status: KURANG 27.50 L</pre></div>
+  </div>
+</div>
+
+<div class="pb"></div>
+
+<div class="soal">
+  <div class="soal-head">
+    <h2>Soal 3 — Penerjemah Sandi Morse Internasional (<code>soal3_ELANG.py</code>)</h2>
+    <span class="badge">Paket 1 · Menengah · 25%</span>
+  </div>
+  <p>Terjemahkan 1 baris <strong>Sandi Morse Internasional</strong> (<code>A</code>–<code>Z</code> dan <code>0</code>–<code>9</code>) menjadi teks <strong>HURUF KAPITAL</strong>. Antar huruf dipisah 1 spasi; antar kata dipisah <code>/</code>. Kode tak dikenal diganti <code>?</code>.</p>
+  <div class="io-grid">
+    <div class="io-col"><strong>Contoh Input:</strong><pre class="morse-sample">.--. .-. .- -- ..- -.- .- / .----</pre></div>
+    <div class="io-col"><strong>Contoh Output:</strong><pre>PRAMUKA 1</pre></div>
+  </div>
+</div>
+
+<div class="soal">
+  <div class="soal-head">
+    <h2>Soal 4 — Klasemen Lomba Tingkat (LT) Penggalang (<code>soal4_ELANG.py</code>)</h2>
+    <span class="badge">Paket 1 · Menantang · 25%</span>
+  </div>
+  <p>Hitung <code>nilai_akhir = 0.3 * pbb + 0.4 * pionering + 0.3 * semaphore</code> untuk <code>N</code> regu. Urutkan dari <code>nilai_akhir</code> tertinggi; jika seri utamakan <code>pionering</code> lebih tinggi; jika masih seri urutkan abjad <code>A–Z</code>.</p>
+  <p><strong>Input:</strong> Baris 1: <code>N</code>. Diikuti <code>N</code> baris <code>NAMA PBB PIONERING SEMAPHORE</code>. &nbsp;<strong>Output:</strong> <code>&lt;peringkat&gt;. &lt;NAMA&gt; - &lt;nilai_2_desimal&gt;</code>.</p>
+  <div class="io-grid">
+    <div class="io-col"><strong>Contoh Input:</strong><pre>4
+GARUDA 80 90 80
+ELANG 85 80 95
+RAJAWALI 80 90 80
+KANCIL 90 90 90</pre></div>
+    <div class="io-col"><strong>Contoh Output:</strong><pre>1. KANCIL - 90.00
+2. ELANG - 86.00
+3. GARUDA - 84.00
+4. RAJAWALI - 84.00</pre></div>
+  </div>
+</div>
+
+<!-- ==================== PAKET 2 ==================== -->
+<div class="pb"></div>
+<div class="paket-bar">PAKET 2 — Sandi, Menaksir, Peta Perjalanan &amp; Logistik <span>Soal 5–8 · Waktu 120 Menit · Skor 0–100</span></div>
+
+<div class="soal">
+  <div class="soal-head">
+    <h2>Soal 5 — Penerjemah Sandi AN &amp; Sandi AZ (<code>soal5_ELANG.py</code>)</h2>
+    <span class="badge">Paket 2 · Mudah · 25%</span>
+  </div>
+  <p>Dalam SKU Penggalang, <strong>Sandi AN</strong> menukar huruf berjarak 13 (<code>A↔N</code>, <code>B↔O</code>, ..., <code>M↔Z</code>) dan <strong>Sandi AZ</strong> mencerminkan alfabet (<code>A↔Z</code>, <code>B↔Y</code>, ..., <code>M↔N</code>). Pertahankan huruf besar/kecil serta biarkan angka, spasi, dan tanda baca tetap sama.</p>
+  <p><strong>Input:</strong> Baris 1: <code>AN</code> atau <code>AZ</code>. Baris 2: 1 baris teks sandi. &nbsp;<strong>Output:</strong> 1 baris hasil terjemahan.</p>
+  <div class="io-grid">
+    <div class="io-col"><strong>Contoh Input:</strong><pre>AZ
+KIZNFPZ 2026!</pre></div>
+    <div class="io-col"><strong>Contoh Output:</strong><pre>PRAMUKA 2026!</pre></div>
+  </div>
+</div>
+
+<div class="soal">
+  <div class="soal-head">
+    <h2>Soal 6 — Menaksir Tinggi Pohon (Metode Bayangan) (<code>soal6_ELANG.py</code>)</h2>
+    <span class="badge">Paket 2 · Mudah-Menengah · 25%</span>
+  </div>
+  <p>Untuk menaksir tinggi pohon dengan tongkat Pramuka (SKU Penggalang), digunakan perbandingan bayangan: <code>tinggi_pohon = (tinggi_tongkat * bayangan_pohon) / bayangan_tongkat</code>. Jika ada nilai <code>&lt;= 0</code>, cetak <code>TIDAK VALID</code>. Jika valid, cetak tinggi 2 desimal dan kategori: <code>RENDAH</code> (&lt; 5 m), <code>SEDANG</code> (5–15 m inklusif), <code>TINGGI</code> (&gt; 15 m).</p>
+  <p><strong>Input:</strong> 1 baris 3 bilangan desimal: <code>T_tongkat B_tongkat B_pohon</code>.</p>
+  <div class="io-grid">
+    <div class="io-col"><strong>Contoh Input:</strong><pre>1.6 0.8 6.0</pre></div>
+    <div class="io-col"><strong>Contoh Output:</strong><pre>Tinggi: 12.00 m
+Kategori: SEDANG</pre></div>
+  </div>
+</div>
+
+<div class="pb"></div>
+
+<div class="soal">
+  <div class="soal-head">
+    <h2>Soal 7 — Peta Perjalanan &amp; Estimasi Waktu Tiba Pos (<code>soal7_ELANG.py</code>)</h2>
+    <span class="badge">Paket 2 · Menengah · 25%</span>
+  </div>
+  <p>Regu berangkat pada pukul <code>HH:MM</code> (format 24 jam) menempuh <code>N</code> segmen perjalanan. Tiap segmen memiliki jarak <code>jarak_m</code> (meter), kecepatan <code>kec</code> (meter/menit), dan waktu istirahat <code>ist</code> (menit). Waktu tempuh tiap segmen adalah <code>math.ceil(jarak_m / kec) + ist</code> menit. Hitung total jarak (km, 2 desimal), total durasi (menit), dan jam tiba (format <code>HH:MM</code> 24-jam).</p>
+  <p><strong>Input:</strong> Baris 1: <code>HH:MM</code>. Baris 2: <code>N</code>. Diikuti <code>N</code> baris <code>jarak_m kec ist</code>.</p>
+  <div class="io-grid">
+    <div class="io-col"><strong>Contoh Input:</strong><pre>07:30
+2
+1500 50 10
+1000 40 5</pre></div>
+    <div class="io-col"><strong>Contoh Output:</strong><pre>Jarak: 2.50 km
+Durasi: 70 menit
+Tiba: 08:40</pre></div>
+  </div>
+</div>
+
+<div class="soal">
+  <div class="soal-head">
+    <h2>Soal 8 — Inventaris &amp; Kekurangan Peralatan Regu (<code>soal8_ELANG.py</code>)</h2>
+    <span class="badge">Paket 2 · Menengah-Menantang · 25%</span>
+  </div>
+  <p>Diberikan <code>N</code> baris daftar kebutuhan barang (<code>NAMA JUMLAH</code>) lalu <code>M</code> baris laporan barang yang sudah dibawa anggota (<code>NAMA JUMLAH</code> — nama barang yang sama boleh muncul beberapa kali dan harus dijumlahkan). Cetak semua barang yang masih kurang, diurutkan menurut abjad <code>A–Z</code> dengan format <code>NAMA: KURANG &lt;selisih&gt;</code>. Jika tidak ada kekurangan, cetak <code>SEMUA LENGKAP</code>.</p>
+  <div class="io-grid">
+    <div class="io-col"><strong>Contoh Input:</strong><pre>3
+TALI 10
+TONGKAT 8
+KOMPAS 2
+4
+TALI 4
+TONGKAT 8
+TALI 3
+KOMPAS 1</pre></div>
+    <div class="io-col"><strong>Contoh Output:</strong><pre>KOMPAS: KURANG 1
+TALI: KURANG 3</pre></div>
+  </div>
+</div>
+
+<!-- ==================== PAKET 3 ==================== -->
+<div class="pb"></div>
+<div class="paket-bar">PAKET 3 — Semboyan, Sandi Lanjutan, Jadwal &amp; Penilaian <span>Soal 9–12 · Waktu 120 Menit · Skor 0–100</span></div>
+
+<div class="soal">
+  <div class="soal-head">
+    <h2>Soal 9 — Penerjemah Sandi Angka Pramuka (<code>soal9_ELANG.py</code>)</h2>
+    <span class="badge">Paket 3 · Mudah · 25%</span>
+  </div>
+  <p>Pada <strong>Sandi Angka</strong>, <code>1=A</code>, <code>2=B</code>, ..., <code>26=Z</code>, dan <code>0=spasi</code>. Angka dipisahkan oleh spasi atau tanda hubung (<code>-</code>). Token yang bukan bilangan <code>0</code>–<code>26</code> diterjemahkan menjadi <code>?</code>.</p>
+  <p><strong>Input:</strong> 1 baris kode Sandi Angka. &nbsp;<strong>Output:</strong> 1 baris hasil terjemahan HURUF KAPITAL.</p>
+  <div class="io-grid">
+    <div class="io-col"><strong>Contoh Input:</strong><pre>16-18-1-13-21-11-1 0 19-9-1-16</pre></div>
+    <div class="io-col"><strong>Contoh Output:</strong><pre>PRAMUKA SIAP</pre></div>
+  </div>
+</div>
+
+<div class="soal">
+  <div class="soal-head">
+    <h2>Soal 10 — Sandi Geser (Caesar) Multi-Baris (<code>soal10_ELANG.py</code>)</h2>
+    <span class="badge">Paket 3 · Menengah · 25%</span>
+  </div>
+  <p>Ubah <code>N</code> baris pesan menggunakan <strong>Sandi Geser</strong> dengan kunci <code>K</code> (bisa lebih dari 26). Mode <code>ENKRIPSI</code> menggeser huruf maju <code>+K</code> langkah; mode <code>DEKRIPSI</code> menggeser mundur <code>-K</code> langkah. Pertahankan huruf besar/kecil dan karakter non-huruf.</p>
+  <p><strong>Input:</strong> Baris 1: <code>ENKRIPSI</code> / <code>DEKRIPSI</code>. Baris 2: <code>K</code>. Baris 3: <code>N</code>. Diikuti <code>N</code> baris teks.</p>
+  <div class="io-grid">
+    <div class="io-col"><strong>Contoh Input:</strong><pre>ENKRIPSI
+3
+2
+Pramuka Siap!
+Regu Elang 1</pre></div>
+    <div class="io-col"><strong>Contoh Output:</strong><pre>Sudpxnd Vlds!
+Uhjx Hodqj 1</pre></div>
+  </div>
+</div>
+
+<div class="pb"></div>
+
+<div class="soal">
+  <div class="soal-head">
+    <h2>Soal 11 — Penjadwalan Piket &amp; Jaga Malam Perkemahan (<code>soal11_ELANG.py</code>)</h2>
+    <span class="badge">Paket 3 · Menengah · 25%</span>
+  </div>
+  <p>Buat jadwal jaga malam sebanyak <code>S</code> shift berurutan dimulai pukul <code>HH:MM</code> dengan durasi <code>D</code> menit per shift (format 24-jam melewati tengah malam). Petugas diambil bergiliran secara berulang dari daftar <code>N</code> nama anggota regu.</p>
+  <p><strong>Input:</strong> Baris 1: <code>HH:MM</code>. Baris 2: <code>D</code>. Baris 3: <code>N</code>. Diikuti <code>N</code> baris nama anggota. Baris terakhir: <code>S</code>.<br>
+  <strong>Output:</strong> <code>S</code> baris berformat <code>Shift &lt;i&gt;: HH:MM-HH:MM - &lt;NAMA&gt;</code>.</p>
+  <div class="io-grid">
+    <div class="io-col"><strong>Contoh Input:</strong><pre>22:00
+90
+3
+Budi
+Siti
+Andi
+4</pre></div>
+    <div class="io-col"><strong>Contoh Output:</strong><pre>Shift 1: 22:00-23:30 - Budi
+Shift 2: 23:30-01:00 - Siti
+Shift 3: 01:00-02:30 - Andi
+Shift 4: 02:30-04:00 - Budi</pre></div>
+  </div>
+</div>
+
+<div class="soal">
+  <div class="soal-head">
+    <h2>Soal 12 — Rekap Juara Umum (Penalti &amp; Diskualifikasi) (<code>soal12_ELANG.py</code>)</h2>
+    <span class="badge">Paket 3 · Menantang · 25%</span>
+  </div>
+  <p>Sebanyak <code>N</code> regu memiliki data <code>NAMA PBB PIONERING SANDI P3K TELAT PELANGGARAN</code> (<code>YA</code>/<code>TIDAK</code>). Jika <code>PELANGGARAN == YA</code>, regu didiskualifikasi (tidak masuk peringkat). Untuk regu lolos: <code>skor = max(0.0, rata_rata_4_pos - 0.5 * TELAT)</code>. Urutkan regu lolos dari <code>skor</code> tertinggi, tie-breaker nilai <code>SANDI</code> tertinggi, lalu nama <code>A–Z</code>. Di bawah peringkat, cetak daftar diskualifikasi urut <code>A–Z</code> dengan format <code>DISKUALIFIKASI: &lt;NAMA&gt;</code>.</p>
+  <div class="io-grid">
+    <div class="io-col"><strong>Contoh Input:</strong><pre>4
+ELANG 80 80 90 90 4 TIDAK
+GARUDA 85 85 80 80 1 TIDAK
+RAJAWALI 90 90 90 90 0 YA
+KANCIL 84 80 86 82 2 TIDAK</pre></div>
+    <div class="io-col"><strong>Contoh Output:</strong><pre>1. ELANG - 83.00
+2. KANCIL - 82.00
+3. GARUDA - 82.00
+DISKUALIFIKASI: RAJAWALI</pre></div>
+  </div>
+</div>
+
+<!-- ==================== PAKET 4 ==================== -->
+<div class="pb"></div>
+<div class="paket-bar">PAKET 4 — Berpikir Komputasional (Bebras) &amp; Simulasi Final <span>Soal 13–16 · Waktu 120 Menit · Skor 0–100</span></div>
+
+<div class="soal">
+  <div class="soal-head">
+    <h2>Soal 13 — Simulasi Tali Pionering (Potongan &amp; Sisa) (<code>soal13_ELANG.py</code>)</h2>
+    <span class="badge">Paket 4 · Mudah-Menengah · 25%</span>
+  </div>
+  <p>Regu memiliki <code>N</code> gulung tali (panjang dalam cm) dan ingin memotong sebanyak mungkin potongan standar panjang <code>L</code> cm (sisa tali tidak boleh disambung). Hitung total potongan, total sisa tali terbuang (cm), dan status terhadap target <code>T</code> potongan.</p>
+  <p><strong>Input:</strong> Baris 1: <code>N L T</code>. Baris 2: <code>N</code> angka panjang gulungan. &nbsp;<strong>Output:</strong> <code>Potongan: &lt;p&gt;</code>, <code>Sisa Tali: &lt;s&gt; cm</code>, <code>Status: CUKUP</code> atau <code>Status: KURANG &lt;kurang&gt;</code>.</p>
+  <div class="io-grid">
+    <div class="io-col"><strong>Contoh Input:</strong><pre>3 150 8
+500 320 450</pre></div>
+    <div class="io-col"><strong>Contoh Output:</strong><pre>Potongan: 8
+Sisa Tali: 70 cm
+Status: CUKUP</pre></div>
+  </div>
+</div>
+
+<div class="soal">
+  <div class="soal-head">
+    <h2>Soal 14 — Jejak Langkah Penjelajahan (Koordinat &amp; Jarak) (<code>soal14_ELANG.py</code>)</h2>
+    <span class="badge">Paket 4 · Menengah · 25%</span>
+  </div>
+  <p>Regu mulai dari perkemahan di titik <code>(0, 0)</code> lalu berjalan mengikuti <code>N</code> perintah <code>ARAH LANGKAH</code>: <code>U</code> (y+), <code>S</code> (y-), <code>T</code> (x+), <code>B</code> (x-). Hitung koordinat akhir <code>(x, y)</code>, <strong>Jarak Langkah</strong> (Manhattan = <code>|x| + |y|</code>), dan <strong>Jarak Lurus</strong> (Euclidean = <code>sqrt(x² + y²)</code>, 2 desimal).</p>
+  <div class="io-grid">
+    <div class="io-col"><strong>Contoh Input:</strong><pre>4
+U 4
+T 3
+S 1
+B 0</pre></div>
+    <div class="io-col"><strong>Contoh Output:</strong><pre>Posisi: (3, 3)
+Jarak Langkah: 6
+Jarak Lurus: 4.24</pre></div>
+  </div>
+</div>
+
+<div class="pb"></div>
+
+<div class="soal">
+  <div class="soal-head">
+    <h2>Soal 15 — Penerjemah Posisi Bendera Semaphore Resmi (<code>soal15_ELANG.py</code>)</h2>
+    <span class="badge">Paket 4 · Menengah-Menantang · 25%</span>
+  </div>
+  <p>Pada <strong>7 Lingkaran Semaphore</strong>, 8 posisi arah bendera diberi nomor searah jarum jam: <code>0</code>=Bawah (pukul 6), <code>1</code>=Bawah-Kiri, <code>2</code>=Kiri, <code>3</code>=Atas-Kiri, <code>4</code>=Atas (pukul 12), <code>5</code>=Atas-Kanan, <code>6</code>=Kanan, <code>7</code>=Bawah-Kanan. Pasangan posisi <code>a-b</code> setara dengan <code>b-a</code> (urutan tangan bebas). Antar huruf dipisah spasi, antar kata dipisah <code>/</code>. Kode tak dikenal diganti <code>?</code>.</p>
+  <table class="mini">
+    <tr><th>Lingkaran</th><th>Pasangan Posisi → Huruf (A–Z)</th></tr>
+    <tr><td>1 (poros 0)</td><td><code>0-1</code>:A · <code>0-2</code>:B · <code>0-3</code>:C · <code>0-4</code>:D · <code>0-5</code>:E · <code>0-6</code>:F · <code>0-7</code>:G</td></tr>
+    <tr><td>2 (poros 1)</td><td><code>1-2</code>:H · <code>1-3</code>:I · <code>1-4</code>:K · <code>1-5</code>:L · <code>1-6</code>:M · <code>1-7</code>:N</td></tr>
+    <tr><td>3 (poros 2)</td><td><code>2-3</code>:O · <code>2-4</code>:P · <code>2-5</code>:Q · <code>2-6</code>:R · <code>2-7</code>:S</td></tr>
+    <tr><td>4–7</td><td><code>3-4</code>:T · <code>3-5</code>:U · <code>3-6</code>:Y · <code>4-6</code>:J · <code>4-7</code>:V · <code>5-6</code>:W · <code>5-7</code>:X · <code>6-7</code>:Z</td></tr>
+  </table>
+  <div class="io-grid">
+    <div class="io-col"><strong>Contoh Input:</strong><pre>7-2 1-0 3-4 3-6 0-1 / 0-4 0-1 2-6 1-6 0-1</pre></div>
+    <div class="io-col"><strong>Contoh Output:</strong><pre>SATYA DARMA</pre></div>
+  </div>
+</div>
+
+<div class="soal">
+  <div class="soal-head">
+    <h2>Soal 16 — Optimasi Isi Ransel Perkemahan (Greedy Prioritas) (<code>soal16_ELANG.py</code>)</h2>
+    <span class="badge">Paket 4 · Menantang · 25%</span>
+  </div>
+  <p>Ransel memuat beban maksimal <code>W</code> kg. Tersedia <code>N</code> barang dengan data <code>NAMA BERAT PRIORITAS</code>. Urutkan kandidat barang dari <strong>PRIORITAS tertinggi</strong>; jika sama pilih <strong>BERAT paling ringan</strong>; jika masih sama pilih <strong>NAMA abjad A–Z</strong>. Periksa satu per satu sesuai urutan tersebut: masukkan barang ke ransel jika total berat tidak melebihi <code>W</code>.</p>
+  <p><strong>Input:</strong> Baris 1: <code>W N</code>. Diikuti <code>N</code> baris <code>NAMA BERAT PRIORITAS</code>.<br>
+  <strong>Output:</strong> Baris 1: <code>Dibawa: &lt;barang dipisah ", "&gt;</code> (atau <code>Dibawa: TIDAK ADA</code>), Baris 2: <code>Total Berat: &lt;b&gt; kg</code>, Baris 3: <code>Total Prioritas: &lt;p&gt;</code>.</p>
+  <div class="io-grid">
+    <div class="io-col"><strong>Contoh Input:</strong><pre>10 4
+TENDA 6 95
+KOMPAS 1 90
+MAKANAN 4 85
+AIR 3 90</pre></div>
+    <div class="io-col"><strong>Contoh Output:</strong><pre>Dibawa: TENDA, KOMPAS, AIR
+Total Berat: 10 kg
+Total Prioritas: 275</pre></div>
+  </div>
+</div>
+
+</body>
+</html>

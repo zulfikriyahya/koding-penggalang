@@ -20,7 +20,14 @@ LATIHAN_DIR = ROOT_DIR / "latihan"
 if str(ROOT_DIR) not in sys.path:
     sys.path.insert(0, str(ROOT_DIR))
 
-from penguji.core import CaseResult, FileResult, find_soal_files, grade_file  # noqa: E402
+from penguji.core import (  # noqa: E402
+    PAKET_INFO,
+    TEST_CASES,
+    CaseResult,
+    FileResult,
+    find_soal_files,
+    grade_file,
+)
 
 
 class Style:
@@ -135,7 +142,7 @@ def pad_styled(styled: str, plain: str, width: int) -> str:
 
 def print_summary(results: list[FileResult], label: str, s: Style) -> None:
     total_score = sum(r.score for r in results)
-    max_score = min(len(results) * 25, 100)
+    max_score = len(results) * 25
     bar = progress_bar(total_score, max_score, width=20)
 
     print(s.bold(f"═══ REKAP NILAI · {label} ═══"))
@@ -183,13 +190,14 @@ def resolve_file(arg: str) -> pathlib.Path | None:
 
 
 def show_help(s: Style) -> None:
-    print(s.bold("Penguji Lomba Coding Python — Pramuka Penggalang"))
+    print(s.bold("Penguji Lomba Coding Python — Bank 16 Soal Pramuka Penggalang (4 Paket)"))
     print("Pemakaian singkat:")
-    print(f"  {s.cyan('cek soal1_ELANG.py')}     Uji 1 file jawaban (deteksi soal otomatis)")
-    print(f"  {s.cyan('cek 1')}                  Uji soal 1 di folder ini / folder latihan")
-    print(f"  {s.cyan('cek 3 jawaban.py')}       Uji file dengan nomor soal manual (1–4)")
-    print(f"  {s.cyan('cek all')} / {s.cyan('cekall')}       Uji semua soal 1–4 + rekap nilai /100")
-    print(f"  {s.cyan('cek folder_tim/')}        Uji semua soal milik 1 tim + rekap nilai /100")
+    print(f"  {s.cyan('cek soal1_ELANG.py')}     Uji 1 file jawaban (deteksi nomor soal 1–16 otomatis)")
+    print(f"  {s.cyan('cek 1')} .. {s.cyan('cek 16')}        Uji cepat soal nomor 1–16 di folder ini / latihan")
+    print(f"  {s.cyan('cek 15 jawaban.py')}      Uji file dengan nomor soal manual (1–16)")
+    print(f"  {s.cyan('cek paket1')} .. {s.cyan('paket4')}   Uji 1 paket simulasi (4 soal = skor /100)")
+    print(f"  {s.cyan('cek all')} / {s.cyan('cekall')}       Uji semua soal (1–16) di folder ini / latihan")
+    print(f"  {s.cyan('cek folder_tim/')}        Uji semua soal milik 1 tim + tabel rekap nilai")
     print(f"  {s.cyan('cekgui')}                 Buka aplikasi penguji grafis (GUI Desktop)")
 
 
@@ -221,6 +229,25 @@ def main() -> None:
         show_help(s)
         sys.exit(0)
 
+    # Mode: cek paket1 .. paket4 [folder]
+    if args[0].lower() in ("paket1", "paket2", "paket3", "paket4"):
+        p_num = int(args[0][-1])
+        p_title = PAKET_INFO[p_num][0]
+        target_dir = pathlib.Path(args[1]).resolve() if len(args) >= 2 else pathlib.Path.cwd()
+        files = find_soal_files(target_dir, paket_num=p_num)
+        label = f"{p_title} ({target_dir})"
+        if not files and len(args) == 1:
+            files = find_soal_files(LATIHAN_DIR, paket_num=p_num)
+            label = f"{p_title} ({LATIHAN_DIR})"
+        if not files:
+            print(s.red(f"[ERROR] Tidak ditemukan file untuk {p_title}."))
+            sys.exit(1)
+        results = [grade_file(f) for f in files]
+        for r in results:
+            print_file_result(r, s)
+        print_summary(results, label, s)
+        sys.exit(0 if all(r.perfect for r in results) else 1)
+
     # Mode: cek all / semua
     if args[0].lower() in ("all", "semua"):
         cwd = pathlib.Path.cwd()
@@ -230,7 +257,7 @@ def main() -> None:
             files = find_soal_files(LATIHAN_DIR)
             label = str(LATIHAN_DIR)
         if not files:
-            print(s.red("[ERROR] Tidak ditemukan file soal1..soal4 (*.py)."))
+            print(s.red("[ERROR] Tidak ditemukan file soal1..soal16 (*.py)."))
             sys.exit(1)
         results = [grade_file(f) for f in files]
         for r in results:
@@ -243,7 +270,7 @@ def main() -> None:
     if p0.is_dir():
         files = find_soal_files(p0.resolve())
         if not files:
-            print(s.red(f"[ERROR] Tidak ada file soal1..soal4 (*.py) di {p0}"))
+            print(s.red(f"[ERROR] Tidak ada file soal1..soal16 (*.py) di {p0}"))
             sys.exit(1)
         results = [grade_file(f) for f in files]
         for r in results:
@@ -251,8 +278,8 @@ def main() -> None:
         print_summary(results, str(p0.resolve()), s)
         sys.exit(0 if all(r.perfect for r in results) else 1)
 
-    # Mode: cek <1|2|3|4> [file]
-    if args[0] in ("1", "2", "3", "4") and soal_override is None:
+    # Mode: cek <1..16> [file]
+    if args[0].isdigit() and int(args[0]) in TEST_CASES and soal_override is None:
         soal_num = int(args[0])
         if len(args) >= 2:
             target = resolve_file(args[1])

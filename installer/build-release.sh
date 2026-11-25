@@ -90,7 +90,7 @@ PY
 # 4. Salin 3 file PDF langsung agar bisa diunduh 1-klik di halaman GitHub Release
 cp -a "$ROOT_DIR/modul/01_Modul_Belajar_Pemrograman_dan_Python3_Penggalang.pdf" "$DIST_DIR/"
 cp -a "$ROOT_DIR/modul/02_Referensi_Cepat_Sintaks_Python3_Saat_Lomba.pdf" "$DIST_DIR/"
-cp -a "$ROOT_DIR/modul/03_Paket_Latihan_4_Soal_Lomba_Penggalang.pdf" "$DIST_DIR/"
+cp -a "$ROOT_DIR/modul/03_Bank_16_Soal_Latihan_Lomba_Penggalang.pdf" "$DIST_DIR/"
 
 # 5. Buat checksum SHA256
 (cd "$DIST_DIR" && sha256sum *.run *.tar.gz *.zip *.pdf > SHA256SUMS.txt)
