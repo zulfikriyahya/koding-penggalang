@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Referensi Cepat Sintaks Python 3 &amp; Data Kepramukaan — Saat Lomba</title>
+<style>
+  @page {
+    size: A4;
+    margin: 13mm 13mm 14mm 13mm;
+    @bottom-left {
+      content: "Referensi Cepat Sintaks Python 3 (Offline — Sesuai Juknis Lomba Penggalang)";
+      font-family: Inter, "DejaVu Sans", sans-serif;
+      font-size: 7.8pt;
+      color: #64748b;
+    }
+    @bottom-right {
+      content: "Halaman " counter(page) " / " counter(pages);
+      font-family: Inter, "DejaVu Sans", sans-serif;
+      font-size: 7.8pt;
+      color: #64748b;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: Inter, "DejaVu Sans", sans-serif;
+    font-size: 8.8pt;
+    line-height: 1.42;
+    color: #1e293b;
+    margin: 0;
+  }
+  .header {
+    background: #0f172a;
+    color: #f8fafc;
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+  }
+  .header h1 { margin: 0 0 3px 0; font-size: 14pt; }
+  .header p { margin: 0; font-size: 8.4pt; color: #cbd5e1; }
+  .alert {
+    background: #fff7ed;
+    border-left: 4px solid #ea580c;
+    padding: 7px 10px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    font-size: 8.4pt;
+  }
+  .alert strong { color: #9a3412; }
+  .tip {
+    background: #eff6ff;
+    border-left: 4px solid #2563eb;
+    padding: 7px 10px;
+    border-radius: 4px;
+    margin-top: 8px;
+    font-size: 8.4pt;
+    page-break-inside: avoid;
+  }
+  h2 {
+    font-size: 10.6pt;
+    color: #0f172a;
+    border-bottom: 2px solid #1d4ed8;
+    padding-bottom: 2px;
+    margin: 11px 0 6px 0;
+    page-break-after: avoid;
+  }
+  h3 { font-size: 9pt; color: #1d4ed8; margin: 6px 0 3px 0; page-break-after: avoid; }
+  pre {
+    background: #f8fafc;
+    border: 1px solid #cbd5e1;
+    border-radius: 5px;
+    padding: 6px 9px;
+    font-family: "Fira Code", "DejaVu Sans Mono", monospace;
+    font-variant-ligatures: none;
+    font-feature-settings: "liga" 0, "calt" 0;
+    font-size: 8pt;
+    line-height: 1.38;
+    margin: 3px 0 6px 0;
+    white-space: pre-wrap;
+    page-break-inside: avoid;
+  }
+  code {
+    font-family: "Fira Code", "DejaVu Sans Mono", monospace;
+    font-variant-ligatures: none;
+    font-feature-settings: "liga" 0, "calt" 0;
+    font-size: 8pt;
+    background: #e2e8f0;
+    padding: 1px 3px;
+    border-radius: 3px;
+    color: #0f172a;
+  }
+  .morse-tbl code {
+    letter-spacing: 1px;
+    font-weight: 600;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 4px 0 8px 0;
+    font-size: 8.1pt;
+    page-break-inside: avoid;
+  }
+  th, td {
+    border: 1px solid #cbd5e1;
+    padding: 4px 6px;
+    text-align: left;
+    vertical-align: top;
+  }
+  th { background: #e2e8f0; color: #0f172a; font-weight: 700; }
+  .grid2 { display: flex; gap: 9px; page-break-inside: avoid; }
+  .col { flex: 1; }
+  .pb { page-break-before: always; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>REFERENSI CEPAT SINTAKS PYTHON 3 — LOMBA CODING PENGGALANG</h1>
+  <p>Lembar Referensi Resmi Offline (Berlaku untuk semua editor standar: IDLE, VS Code, Sublime Text, dll.)</p>
+</div>
+
+<div class="alert">
+  <strong>WAJIB INGAT (ATURAN JUKNIS):</strong>
+  (1) <code>input()</code> <strong>selalu kosong</strong> tanpa teks di dalam kurung &nbsp;|&nbsp;
+  (2) Output <strong>sama persis</strong> huruf, spasi, dan desimalnya &nbsp;|&nbsp;
+  (3) Simpan sebagai <code>soalN_NAMATIM.py</code> &nbsp;|&nbsp;
+  (4) Tanpa internet (selain Google Form), tanpa AI, tanpa HP.
+</div>
+
+<h2>1. Pola Input &amp; Output Cepat</h2>
+<div class="grid2">
+  <div class="col">
+    <h3>Membaca Input</h3>
+<pre># 1 teks bersih dari spasi ujung
+s = input().strip()
+
+# 1 bilangan bulat / desimal
+n = int(input())
+x = float(input())
+
+# Beberapa angka dalam 1 baris
+a, b = map(int, input().split())
+daftar = list(map(int, input().split()))
+
+# Membaca N baris data
+n = int(input())
+items = [input().strip() for _ in range(n)]</pre>
+  </div>
+  <div class="col">
+    <h3>Mencetak Output Presisi</h3>
+<pre># Teks dan angka dengan f-string
+print(f"Hasil: {nilai}")
+
+# Tepat 2 angka di belakang koma (12.50)
+print(f"{nilai:.2f}")
+
+# 2 digit dengan nol di depan (07:05)
+print(f"{jam:02d}:{menit:02d}")
+
+# Gabung list tanpa spasi lebih di akhir
+print(" ".join(kata_list))
+print(" ".join(map(str, angka_list)))</pre>
+  </div>
+</div>
+
+<h2>2. Operator, Percabangan, Perulangan &amp; Fungsi</h2>
+<div class="grid2">
+  <div class="col">
+<pre># Matematika &amp; modul math
+import math
+7 // 2          # 3 (bagi bulat)
+7 % 2           # 1 (sisa bagi / modulo)
+(350 + 30) % 360 # 20 (putar sudut kompas)
+math.ceil(17/6) # 3 (bulat ke atas: tenda!)
+math.floor(3.9) # 3 (bulat ke bawah)
+math.sqrt(25)   # 5.0 (akar kuadrat)
+math.gcd(12,18) # 6 (FPB)
+abs(-15)        # 15 (nilai positif)</pre>
+  </div>
+  <div class="col">
+<pre># Percabangan &amp; Perulangan
+if x &gt;= 80:
+    status = "LULUS"
+elif x &gt;= 60:
+    status = "CADANGAN"
+else:
+    status = "ULANG"
+
+for i in range(1, n + 1):   # 1..n
+    ...
+for idx, val in enumerate(data, start=1):
+    print(f"{idx}. {val}")</pre>
+  </div>
+</div>
+
+<h2>3. Pengolahan String, List, Dictionary &amp; Sorting</h2>
+<div class="grid2">
+  <div class="col">
+    <h3>String &amp; Rumus Sandi</h3>
+<pre>s.upper() / s.lower() / s.strip()
+s.split() / s.split(",") / s.replace("a","b")
+s[::-1]                  # balik teks
+"A" &lt;= ch &lt;= "Z"         # cek huruf kapital
+
+# Sandi Geser (maju +k, mundur -k)
+chr((ord(ch) - ord("A") - k) % 26 + ord("A"))
+
+# Sandi AN (geser 13): k = 13
+# Sandi AZ (balik A&lt;-&gt;Z):
+chr(ord("Z") - (ord(ch) - ord("A")))</pre>
+  </div>
+  <div class="col">
+    <h3>List, Dictionary &amp; Sorting</h3>
+<pre>len(a) | sum(a) | min(a) | max(a)
+a.append(x) | a.count(x) | set(a)
+
+# Kamus aman (tanpa KeyError)
+nilai = kamus.get(kunci, "?")
+
+# Hitung frekuensi
+freq = {}
+for x in data:
+    freq[x] = freq.get(x, 0) + 1
+
+# Urutkan multi-kriteria (terbesar, lalu A-Z)
+regu.sort(key=lambda r: (-r[1], -r[2], r[0]))</pre>
+  </div>
+</div>
+
+<div class="pb"></div>
+
+<h2>4. Data Faktual Kepramukaan (SKU Penggalang — SK Kwarnas No. 198 Tahun 2011)</h2>
+<div class="grid2">
+  <div class="col">
+    <h3>16 Arah Mata Angin &amp; Derajat Kompas</h3>
+    <table>
+      <tr><th>Arah</th><th>Singk.</th><th>Derajat</th><th>Arah</th><th>Singk.</th><th>Derajat</th></tr>
+      <tr><td><strong>Utara</strong></td><td>U</td><td>0° / 360°</td><td><strong>Selatan</strong></td><td>S</td><td>180°</td></tr>
+      <tr><td>Utara Timur Laut</td><td>UTL</td><td>22,5°</td><td>Selatan Barat Daya</td><td>SBD</td><td>202,5°</td></tr>
+      <tr><td><strong>Timur Laut</strong></td><td>TL</td><td>45°</td><td><strong>Barat Daya</strong></td><td>BD</td><td>225°</td></tr>
+      <tr><td>Timur Timur Laut</td><td>TTL</td><td>67,5°</td><td>Barat Barat Daya</td><td>BBD</td><td>247,5°</td></tr>
+      <tr><td><strong>Timur</strong></td><td>T</td><td>90°</td><td><strong>Barat</strong></td><td>B</td><td>270°</td></tr>
+      <tr><td>Timur Menenggara</td><td>TM</td><td>112,5°</td><td>Barat Barat Laut</td><td>BBL</td><td>292,5°</td></tr>
+      <tr><td><strong>Tenggara</strong></td><td>TG</td><td>135°</td><td><strong>Barat Laut</strong></td><td>BL</td><td>315°</td></tr>
+      <tr><td>Selatan Menenggara</td><td>SM</td><td>157,5°</td><td>Utara Barat Laut</td><td>UBL</td><td>337,5°</td></tr>
+    </table>
+    <p style="font-size:8pt;margin:2px 0;"><strong>Rumus Back Azimuth (Bidik Balik):</strong> jika <code>azimuth &lt; 180</code> → <code>azimuth + 180</code>; jika <code>azimuth &gt;= 180</code> → <code>azimuth - 180</code> (atau ringkas: <code>(azimuth + 180) % 360</code>).</p>
+  </div>
+  <div class="col">
+    <h3>Sandi Morse Internasional (A–Z &amp; 0–9)</h3>
+    <table class="morse-tbl">
+      <tr><th>Huruf</th><th>Kode</th><th>Huruf</th><th>Kode</th><th>Angka</th><th>Kode</th></tr>
+      <tr><td>A</td><td><code>.-</code></td><td>N</td><td><code>-.</code></td><td>0</td><td><code>-----</code></td></tr>
+      <tr><td>B</td><td><code>-...</code></td><td>O</td><td><code>---</code></td><td>1</td><td><code>.----</code></td></tr>
+      <tr><td>C</td><td><code>-.-.</code></td><td>P</td><td><code>.--.</code></td><td>2</td><td><code>..---</code></td></tr>
+      <tr><td>D</td><td><code>-..</code></td><td>Q</td><td><code>--.-</code></td><td>3</td><td><code>...--</code></td></tr>
+      <tr><td>E</td><td><code>.</code></td><td>R</td><td><code>.-.</code></td><td>4</td><td><code>....-</code></td></tr>
+      <tr><td>F</td><td><code>..-.</code></td><td>S</td><td><code>...</code></td><td>5</td><td><code>.....</code></td></tr>
+      <tr><td>G</td><td><code>--.</code></td><td>T</td><td><code>-</code></td><td>6</td><td><code>-....</code></td></tr>
+      <tr><td>H</td><td><code>....</code></td><td>U</td><td><code>..-</code></td><td>7</td><td><code>--...</code></td></tr>
+      <tr><td>I</td><td><code>..</code></td><td>V</td><td><code>...-</code></td><td>8</td><td><code>---..</code></td></tr>
+      <tr><td>J</td><td><code>.---</code></td><td>W</td><td><code>.--</code></td><td>9</td><td><code>----.</code></td></tr>
+      <tr><td>K</td><td><code>-.-</code></td><td>X</td><td><code>-..-</code></td><td colspan="2" rowspan="3" style="font-size:7.6pt;color:#475569;">Antar huruf dipisah 1 spasi.<br>Antar kata biasanya dipisah <code>/</code>.</td></tr>
+      <tr><td>L</td><td><code>.-..</code></td><td>Y</td><td><code>-.--</code></td></tr>
+      <tr><td>M</td><td><code>--</code></td><td>Z</td><td><code>--..</code></td></tr>
+    </table>
+  </div>
+</div>
+
+<h2>5. Strategi Kerja Tim 2 Orang (120 Menit) &amp; Checklist Pengumpulan</h2>
+<table>
+  <tr><th style="width:22%">Waktu</th><th>Pembagian Tugas (1 Laptop, 2 Anggota Penggalang)</th></tr>
+  <tr><td>Menit 0–10</td><td>Baca keempat soal bersama, tandai mana yang paling mudah dikerjakan lebih dulu.</td></tr>
+  <tr><td>Menit 10–95</td><td>Gunakan pola <strong>Driver &amp; Navigator</strong>: 1 orang mengetik kode, 1 orang mengecek rumus, format input/output, dan menghitung contoh uji di kertas. Kerjakan soal termudah lebih dulu!</td></tr>
+  <tr><td>Menit 95–110</td><td>Uji ulang semua soal dengan contoh input dari panitia + uji kasus batas (angka 0, nilai seri, input minimal).</td></tr>
+  <tr><td>Menit 110–120</td><td>Verifikasi nama file dan unggah ke Google Form lebih awal (total waktu pengumpulan menjadi penentu jika nilai seri!).</td></tr>
+</table>
+
+<div class="tip">
+  <strong>Checklist 60 Detik Sebelum Unggah ke Google Form:</strong><br>
+  &#9744; Nama file tepat <code>soalN_NAMATIM.py</code> &nbsp;|&nbsp;
+  &#9744; Semua <code>input()</code> kosong tanpa teks di dalam kurung &nbsp;|&nbsp;
+  &#9744; Sudah diuji jalankan lewat terminal (<code>python3 soalN_NAMATIM.py</code>) tanpa error &nbsp;|&nbsp;
+  &#9744; Output cocok persis dengan contoh soal (huruf besar/kecil, spasi, jumlah desimal) &nbsp;|&nbsp;
+  &#9744; File yang dipilih di Google Form benar-benar file yang sudah disimpan terakhir.
+</div>
+
+</body>
+</html>

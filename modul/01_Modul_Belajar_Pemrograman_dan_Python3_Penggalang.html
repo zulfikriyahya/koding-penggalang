@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Modul Belajar Pemrograman &amp; Python 3 — Pramuka Penggalang (SMP/MTs)</title>
+<style>
+  @page {
+    size: A4;
+    margin: 16mm 15mm 17mm 15mm;
+    @bottom-left {
+      content: "Modul Pemrograman & Python 3 — Pramuka Penggalang (SMP/MTs)";
+      font-family: Inter, "DejaVu Sans", sans-serif;
+      font-size: 8pt;
+      color: #64748b;
+    }
+    @bottom-right {
+      content: "Halaman " counter(page) " / " counter(pages);
+      font-family: Inter, "DejaVu Sans", sans-serif;
+      font-size: 8pt;
+      color: #64748b;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: Inter, "DejaVu Sans", sans-serif;
+    font-size: 9.4pt;
+    line-height: 1.52;
+    color: #1e293b;
+    margin: 0;
+  }
+  .cover {
+    background: #0f172a;
+    color: #f8fafc;
+    padding: 20px 22px;
+    border-radius: 10px;
+    margin-bottom: 14px;
+  }
+  .cover .kicker {
+    font-size: 8.2pt;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: #93c5fd;
+    font-weight: 700;
+    margin-bottom: 5px;
+  }
+  .cover h1 {
+    margin: 0 0 6px 0;
+    font-size: 16.5pt;
+    line-height: 1.25;
+  }
+  .cover p {
+    margin: 0;
+    font-size: 9.2pt;
+    color: #cbd5e1;
+  }
+  h2 {
+    font-size: 11.8pt;
+    color: #0f172a;
+    border-bottom: 2px solid #1d4ed8;
+    padding-bottom: 4px;
+    margin: 16px 0 8px 0;
+    page-break-after: avoid;
+  }
+  h3 {
+    font-size: 9.8pt;
+    color: #1d4ed8;
+    margin: 10px 0 4px 0;
+    page-break-after: avoid;
+  }
+  p { margin: 4px 0 7px 0; }
+  ul, ol { margin: 4px 0 8px 0; padding-left: 19px; }
+  li { margin-bottom: 3px; }
+  pre {
+    background: #f8fafc;
+    border: 1px solid #cbd5e1;
+    border-left: 3px solid #334155;
+    border-radius: 5px;
+    padding: 7px 10px;
+    font-family: "Fira Code", "DejaVu Sans Mono", monospace;
+    font-variant-ligatures: none;
+    font-feature-settings: "liga" 0, "calt" 0;
+    font-size: 8.3pt;
+    line-height: 1.4;
+    margin: 5px 0 7px 0;
+    white-space: pre-wrap;
+    page-break-inside: avoid;
+  }
+  .out {
+    background: #f1f5f9;
+    border: 1px dashed #94a3b8;
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-family: "Fira Code", "DejaVu Sans Mono", monospace;
+    font-variant-ligatures: none;
+    font-feature-settings: "liga" 0, "calt" 0;
+    font-size: 8.2pt;
+    margin: -3px 0 8px 0;
+    white-space: pre-wrap;
+    page-break-inside: avoid;
+  }
+  .code-group {
+    page-break-inside: avoid;
+  }
+  code {
+    font-family: "Fira Code", "DejaVu Sans Mono", monospace;
+    font-variant-ligatures: none;
+    font-feature-settings: "liga" 0, "calt" 0;
+    font-size: 8.4pt;
+    background: #e2e8f0;
+    padding: 1px 4px;
+    border-radius: 3px;
+    color: #0f172a;
+  }
+  .box-info {
+    background: #eff6ff;
+    border-left: 4px solid #2563eb;
+    padding: 8px 12px;
+    border-radius: 4px;
+    margin: 8px 0 10px 0;
+    font-size: 8.9pt;
+    page-break-inside: avoid;
+  }
+  .box-warn {
+    background: #fff7ed;
+    border-left: 4px solid #ea580c;
+    padding: 8px 12px;
+    border-radius: 4px;
+    margin: 8px 0 10px 0;
+    font-size: 8.9pt;
+    page-break-inside: avoid;
+  }
+  .box-warn strong { color: #9a3412; }
+  .box-info strong { color: #1e40af; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 6px 0 10px 0;
+    font-size: 8.6pt;
+    page-break-inside: avoid;
+  }
+  th, td {
+    border: 1px solid #cbd5e1;
+    padding: 5px 7px;
+    text-align: left;
+    vertical-align: top;
+  }
+  th {
+    background: #e2e8f0;
+    color: #0f172a;
+    font-weight: 700;
+  }
+  .grid2 {
+    display: flex;
+    gap: 10px;
+    page-break-inside: avoid;
+  }
+  .col { flex: 1; }
+  .pb { page-break-before: always; }
+  .ref-list { font-size: 8.3pt; color: #334155; }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="kicker">Modul Belajar Mandiri &amp; Persiapan Lomba · Jenjang SMP / MTs (Usia 11–15 Tahun)</div>
+  <h1>MODUL BELAJAR PEMROGRAMAN &amp; PYTHON 3<br>UNTUK PRAMUKA PENGGALANG</h1>
+  <p>Disusun berdasarkan Juknis Lomba Coding Python, SKU Penggalang (SK Kwarnas No. 198 Tahun 2011), Kurikulum Informatika Fase D Kemendikbudristek, dan Dokumentasi Resmi Python 3.</p>
+</div>
+
+<div class="box-info">
+  <strong>Mengapa Pramuka Penggalang Belajar Pemrograman?</strong><br>
+  Dalam Gerakan Pramuka, golongan <strong>Penggalang</strong> (usia 11–15 tahun / SMP-MTs) dilatih terampil memecahkan masalah melalui kerja regu, kompas, sandi, dan penjelajahan. Kemampuan itu sejalan dengan pelajaran <strong>Informatika Fase D</strong> di sekolah, yaitu <strong>Berpikir Komputasional</strong> dan <strong>Pemrograman Python</strong>. Python dipilih karena tulisannya ringkas dan mudah dibaca oleh pemula.
+</div>
+
+<h2>Bab 1. Cara Berpikir Sebelum Menulis Kode</h2>
+<p>Sebelum mengetik di komputer, seorang pemrogram selalu memecahkan soal di atas kertas atau di kepala menggunakan <strong>4 langkah Berpikir Komputasional</strong> (sesuai Kurikulum Informatika SMP/MTs dan Tantangan Bebras Penggalang):</p>
+<ol>
+  <li><strong>Dekomposisi (Memecah Masalah):</strong> Pecah soal yang panjang menjadi tugas-tugas kecil. <em>Contoh:</em> saat menyiapkan perkemahan, kita pecah menjadi: hitung jumlah tenda, hitung kebutuhan air, lalu cek stok cukup atau kurang.</li>
+  <li><strong>Pengenalan Pola (Mencari Aturan yang Berulang):</strong> Amati hal yang selalu sama. <em>Contoh:</em> pada Sandi Geser, setiap huruf selalu bergeser dengan jarak langkah yang sama.</li>
+  <li><strong>Abstraksi (Mengambil Inti Soal):</strong> Fokus pada data dan rumus yang diminta soal, abaikan hiasan cerita. Jika soal bercerita tentang "Regu Elang berkemah di kaki gunung membawa 17 peserta", inti datanya cukup angka <code>17</code>.</li>
+  <li><strong>Algoritma (Menyusun Langkah Berurutan):</strong> Tulis urutan kerja komputer dari awal sampai akhir: <strong>(1) Baca Input → (2) Hitung / Proses → (3) Cetak Output</strong>.</li>
+</ol>
+
+<h2>Bab 2. Mengenal Program Python 3 &amp; Aturan Lomba</h2>
+<p><strong>Program</strong> adalah kumpulan perintah tertulis yang dijalankan komputer secara berurutan dari baris paling atas ke bawah. Bahasa yang dipakai dalam lomba adalah <strong>Python 3</strong>, yang disimpan dalam file berakhiran <code>.py</code> (contoh: <code>soal1_ELANG.py</code>).</p>
+
+<p>Untuk menjalankan file Python 3 di komputer (Windows, Linux, maupun macOS), kamu bisa memakai editor apa saja yang diperbolehkan panitia (IDLE, VS Code, Sublime Text, atau editor standar lain), atau lewat terminal/command prompt dengan mengetik:</p>
+<pre>python3 soal1_ELANG.py</pre>
+
+<div class="box-warn">
+  <strong>Aturan Teknis Wajib pada Juknis Lomba Coding Python:</strong><br>
+  1. <strong>Fungsi <code>input()</code> ditulis kosong tanpa teks di dalam kurung.</strong> Tulis <code>nama = input()</code>, <strong>jangan</strong> tulis <code>nama = input("Masukkan nama: ")</code>. Jika ada teks di dalam kurung, teks itu akan ikut tercetak ke layar sehingga jawaban dianggap tidak sesuai format oleh penilai.<br>
+  2. <strong>Keluaran (<code>print()</code>) harus sama persis</strong> dengan contoh pada soal, termasuk huruf besar/kecil, spasi, tanda titik dua, dan jumlah angka di belakang koma.<br>
+  3. <strong>Nama file jawaban</strong> mengikuti format panitia: <code>soalN_NAMATIM.py</code> (1 file untuk 1 soal).<br>
+  4. Dilarang mengakses internet selain Google Form pengumpulan, dilarang menggunakan AI (ChatGPT, Copilot, dan sejenisnya), HP, atau menyalin kode. Boleh membuka catatan buku atau PDF materi sintaks.
+</div>
+
+<h2>Bab 3. Variabel &amp; Tipe Data Dasar</h2>
+<p>Bayangkan <strong>variabel</strong> seperti <strong>kotak berlabel</strong> yang dipakai untuk menyimpan sebuah data. Tanda <code>=</code> di Python artinya <em>"masukkan nilai di sebelah kanan ke dalam kotak bernama di sebelah kiri"</em>.</p>
+
+<table>
+  <tr><th style="width:18%">Tipe Data</th><th style="width:24%">Nama di Python</th><th style="width:26%">Contoh Nilai</th><th>Kegunaan Sehari-hari</th></tr>
+  <tr><td>Bilangan Bulat</td><td><code>int</code></td><td><code>0</code>, <code>15</code>, <code>-40</code></td><td>Jumlah anggota regu, sudut kompas, skor</td></tr>
+  <tr><td>Bilangan Desimal</td><td><code>float</code></td><td><code>2.5</code>, <code>84.50</code></td><td>Liter air, tinggi pohon (meter), nilai rata-rata</td></tr>
+  <tr><td>Teks</td><td><code>str</code></td><td><code>"Elang"</code>, <code>'Utara'</code></td><td>Nama regu, kata sandi, status <code>"CUKUP"</code></td></tr>
+  <tr><td>Benar / Salah</td><td><code>bool</code></td><td><code>True</code>, <code>False</code></td><td>Hasil pengecekan kondisi (cukup/tidak)</td></tr>
+</table>
+
+<h3>Aturan Penamaan Variabel yang Benar</h3>
+<ul>
+  <li>Boleh memakai huruf, angka, dan garis bawah (<code>_</code>), tetapi <strong>tidak boleh diawali angka</strong> dan <strong>tidak boleh memakai spasi</strong>.</li>
+  <li>Benar: <code>jumlah_regu</code>, <code>nilai1</code>, <code>total_air</code>. &nbsp;|&nbsp; Salah: <code>1nilai</code>, <code>jumlah regu</code>.</li>
+  <li>Huruf besar dan kecil dibedakan: <code>Skor</code> berbeda dengan <code>skor</code>.</li>
+</ul>
+
+<div class="pb"></div>
+
+<h2>Bab 4. Membaca Input &amp; Mencetak Output dengan Tepat</h2>
+<p>Menurut dokumentasi resmi Python 3, fungsi <code>input()</code> <strong>selalu menghasilkan teks (<code>str</code>)</strong> meskipun kamu mengetik angka. Karena itu, jika input berupa angka yang akan dihitung, ubah dulu memakai <code>int()</code> atau <code>float()</code>.</p>
+
+<div class="grid2">
+  <div class="col">
+    <h3>Pola Input yang Paling Sering Dipakai</h3>
+<pre># 1. Membaca 1 baris teks
+regu = input().strip()
+
+# 2. Membaca 1 bilangan bulat
+n = int(input())
+
+# 3. Membaca 1 bilangan desimal
+stok = float(input())
+
+# 4. Membaca 2 angka di 1 baris (dipisah spasi)
+# Contoh input: 17 6
+p, k = map(int, input().split())
+
+# 5. Membaca daftar angka di 1 baris
+# Contoh input: 80 90 85 95
+nilai = list(map(int, input().split()))</pre>
+  </div>
+  <div class="col">
+    <h3>Pola Mencetak Output (<code>print</code> &amp; f-string)</h3>
+<pre>regu = "ELANG"
+nilai = 86.5
+jam = 7
+menit = 5
+
+# f-string: letakkan f sebelum tanda kutip
+print(f"Regu {regu} memperoleh {nilai:.2f}")
+print(f"Waktu: {jam:02d}:{menit:02d}")
+
+# Menggabungkan list teks dengan 1 spasi
+kata = ["Pramuka", "Penggalang", "Jaya"]
+print(" ".join(kata))</pre>
+<div class="out">Output:
+Regu ELANG memperoleh 86.50
+Waktu: 07:05
+Pramuka Penggalang Jaya</div>
+  </div>
+</div>
+
+<h2>Bab 5. Operator Matematika &amp; Logika</h2>
+<p>Python dapat bekerja seperti kalkulator yang sangat teliti. Perhatikan perbedaan pembagian biasa (<code>/</code>), pembagian bulat (<code>//</code>), dan sisa bagi (<code>%</code>):</p>
+
+<table>
+  <tr><th style="width:16%">Operator</th><th style="width:28%">Arti</th><th>Contoh Kode &amp; Hasilnya</th></tr>
+  <tr><td><code>+  -  *</code></td><td>Tambah, kurang, kali</td><td><code>10 + 5</code> → <code>15</code> &nbsp;|&nbsp; <code>4 * 3</code> → <code>12</code></td></tr>
+  <tr><td><code>/</code></td><td>Pembagian desimal (selalu <code>float</code>)</td><td><code>7 / 2</code> → <code>3.5</code> &nbsp;|&nbsp; <code>8 / 2</code> → <code>4.0</code></td></tr>
+  <tr><td><code>//</code></td><td>Pembagian bulat (membuang koma)</td><td><code>7 // 2</code> → <code>3</code> &nbsp;|&nbsp; <code>135 // 60</code> → <code>2</code> (jam)</td></tr>
+  <tr><td><code>%</code></td><td>Sisa bagi (<em>modulo</em>)</td><td><code>7 % 2</code> → <code>1</code> &nbsp;|&nbsp; <code>135 % 60</code> → <code>15</code> (menit)<br><code>(350 + 30) % 360</code> → <code>20</code> (sudut kompas berputar!)</td></tr>
+  <tr><td><code>**</code></td><td>Pangkat</td><td><code>3 ** 2</code> → <code>9</code> (3 kuadrat)</td></tr>
+  <tr><td><code>==  !=</code></td><td>Sama dengan / tidak sama dengan</td><td><code>5 == 5</code> → <code>True</code> &nbsp;|&nbsp; <code>5 != 3</code> → <code>True</code></td></tr>
+  <tr><td><code>&lt;  &lt;=  &gt;  &gt;=</code></td><td>Lebih kecil / lebih besar</td><td><code>80 &gt;= 75</code> → <code>True</code></td></tr>
+  <tr><td><code>and  or  not</code></td><td>Dan / atau / bukan</td><td><code>nilai &gt;= 70 and hadir == True</code></td></tr>
+</table>
+
+<div class="code-group">
+<h2>Bab 6. Percabangan (<code>if</code>, <code>elif</code>, <code>else</code>)</h2>
+<p>Percabangan dipakai ketika program harus memilih tindakan berbeda berdasarkan kondisi tertentu. Di Python, blok kode di dalam <code>if</code> ditandai dengan <strong>tanda titik dua (<code>:</code>)</strong> dan <strong>jarak masuk ke dalam (indentasi) 4 spasi</strong>.</p>
+
+<pre>sudut = 135
+
+if sudut == 0:
+    arah = "Utara"
+elif sudut == 90:
+    arah = "Timur"
+elif sudut == 135:
+    arah = "Tenggara"
+else:
+    arah = "Arah lainnya"
+
+print(arah)</pre>
+<div class="out">Output:
+Tenggara</div>
+</div>
+
+<div class="box-info">
+  <strong>Catatan Penting tentang <code>elif</code>:</strong> Komputer memeriksa kondisi dari atas ke bawah. Begitu ada <strong>satu</strong> kondisi yang bernilai benar (<code>True</code>), blok di bawahnya dijalankan lalu sisanya dilewati. Jadi urutan kondisi rentang angka (misalnya dari kecil ke besar) harus rapi.
+</div>
+
+<h2>Bab 7. Perulangan (<code>for</code> &amp; <code>while</code>)</h2>
+<p>Jika kamu harus mengulang pekerjaan yang sama berkali-kali—misalnya membaca data 10 regu atau memeriksa setiap huruf dalam kalimat sandi—gunakan perulangan.</p>
+
+<div class="grid2">
+  <div class="col">
+    <h3>Perulangan <code>for</code> dengan <code>range()</code></h3>
+<pre># range(4) menghasilkan 0, 1, 2, 3
+for i in range(4):
+    print(f"Pos ke-{i + 1}")
+
+# Pola akumulator (menjumlahkan nilai)
+skor_pos = [80, 90, 85]
+total = 0
+for s in skor_pos:
+    total = total + s
+print(f"Total: {total}")</pre>
+<div class="out">Output:
+Pos ke-1
+Pos ke-2
+Pos ke-3
+Pos ke-4
+Total: 255</div>
+  </div>
+  <div class="col">
+    <h3>Perulangan <code>while</code>, <code>break</code> &amp; <code>continue</code></h3>
+<pre># while terus berulang selama kondisi True
+sisa = 3
+while sisa &gt; 0:
+    print(f"Hitung mundur: {sisa}")
+    sisa = sisa - 1
+
+# break    -> hentikan loop seketika
+# continue -> lompati sisa putaran ini</pre>
+<div class="out">Output:
+Hitung mundur: 3
+Hitung mundur: 2
+Hitung mundur: 1</div>
+  </div>
+</div>
+
+<h2>Bab 8. Mengolah Teks (<code>str</code>) untuk Sandi Pramuka</h2>
+<p>Dalam SKU Penggalang (SK Kwarnas No. 198/2011), sandi dan isyarat adalah materi penting. Di Python, sebuah teks (<code>str</code>) dapat diperiksa huruf demi huruf memakai <code>for huruf in teks:</code>.</p>
+
+<table>
+  <tr><th style="width:30%">Perintah</th><th style="width:36%">Contoh</th><th>Hasil</th></tr>
+  <tr><td><code>.upper()</code> / <code>.lower()</code></td><td><code>"Elang".upper()</code></td><td><code>"ELANG"</code></td></tr>
+  <tr><td><code>.strip()</code></td><td><code>"  halo  ".strip()</code></td><td><code>"halo"</code></td></tr>
+  <tr><td><code>.split()</code></td><td><code>"A B C".split()</code></td><td><code>["A", "B", "C"]</code></td></tr>
+  <tr><td><code>.replace(a, b)</code></td><td><code>"1-2-3".replace("-", " ")</code></td><td><code>"1 2 3"</code></td></tr>
+  <tr><td><code>[::-1]</code> (membalik teks)</td><td><code>"PRAMUKA"[::-1]</code></td><td><code>"AKUMARP"</code></td></tr>
+  <tr><td><code>ord(huruf)</code></td><td><code>ord("A")</code></td><td><code>65</code> (kode angka ASCII huruf A)</td></tr>
+  <tr><td><code>chr(angka)</code></td><td><code>chr(65)</code></td><td><code>"A"</code> (ubah kode ASCII jadi huruf)</td></tr>
+</table>
+
+<div class="code-group">
+<h3>Contoh Nyata: Menerjemahkan Sandi AZ (A↔Z, B↔Y, dst.)</h3>
+<pre>sandi = "KIZNFPZ"
+hasil = ""
+for huruf in sandi.upper():
+    if "A" &lt;= huruf &lt;= "Z":
+        # Jarak dari A dibalik terhadap Z
+        asli = chr(ord("Z") - (ord(huruf) - ord("A")))
+        hasil = hasil + asli
+    else:
+        hasil = hasil + huruf
+print(hasil)</pre>
+<div class="out">Output:
+PRAMUKA</div>
+</div>
+
+<h2>Bab 9. Menyimpan Banyak Data (<code>list</code> &amp; <code>dict</code>) &amp; Mengurutkan</h2>
+<div class="code-group">
+<p><strong>1. <code>list</code> (Daftar Berurut):</strong> Menyimpan banyak data di dalam kurung siku <code>[...]</code>. Nomor urut (<strong>indeks</strong>) di Python selalu dimulai dari <strong><code>0</code></strong>!</p>
+<pre>regu = ["Elang", "Garuda", "Kancil"]
+print(regu[0])       # Elang (elemen pertama)
+print(regu[-1])      # Kancil (elemen terakhir)
+regu.append("Mawar") # Menambah elemen di belakang
+print(len(regu))     # 4</pre>
+<div class="out">Output:
+Elang
+Kancil
+4</div>
+</div>
+
+<div class="code-group">
+<p><strong>2. <code>dict</code> (Kamus Pasangan Kunci → Nilai):</strong> Sangat berguna untuk <strong>Sandi Morse</strong> atau menyimpan nilai per regu.</p>
+<pre>morse = {".-": "A", "-...": "B", "-.-.": "C", "---": "O", "...": "S"}
+pesan = "... --- ..."
+terjemahan = ""
+for kode in pesan.split():
+    terjemahan = terjemahan + morse.get(kode, "?")
+print(terjemahan)</pre>
+<div class="out">Output:
+SOS</div>
+</div>
+
+<div class="code-group">
+<p><strong>3. Mengurutkan Data (<code>sort</code>):</strong> Sering dipakai pada soal klasemen/peringkat regu.</p>
+<pre># Format: (nama_regu, total_nilai, nilai_pionering)
+klasemen = [
+    ("GARUDA", 84, 90),
+    ("ELANG", 86, 80),
+    ("RAJAWALI", 84, 90),
+    ("KANCIL", 90, 90),
+]
+# Tanda minus (-) artinya urut dari TERBESAR ke terkecil; tanpa minus = A ke Z
+klasemen.sort(key=lambda r: (-r[1], -r[2], r[0]))
+for peringkat, r in enumerate(klasemen, start=1):
+    print(f"{peringkat}. {r[0]} - {r[1]}")</pre>
+<div class="out">Output:
+1. KANCIL - 90
+2. ELANG - 86
+3. GARUDA - 84
+4. RAJAWALI - 84</div>
+</div>
+
+<div class="code-group">
+<h2>Bab 10. Fungsi (<code>def</code>) &amp; Kamus Error Python untuk Pemula</h2>
+<p><strong>Fungsi</strong> adalah blok kode yang diberi nama agar bisa dipanggil berulang kali dan membuat program rapi, mudah dibaca, serta mudah dicek oleh rekan setim.</p>
+<pre>def hitung_back_azimuth(azimuth):
+    if azimuth &lt; 180:
+        return azimuth + 180
+    return azimuth - 180
+
+print(hitung_back_azimuth(45))
+print(hitung_back_azimuth(270))</pre>
+<div class="out">Output:
+225
+90</div>
+</div>
+
+<h3>Kamus Pesan Error Python Paling Sering Muncul Saat Latihan</h3>
+<table>
+  <tr><th style="width:23%">Nama Error</th><th style="width:37%">Penyebab Umum</th><th>Cara Cepat Memperbaiki</th></tr>
+  <tr><td><code>SyntaxError</code></td><td>Lupa tanda <code>:</code> di akhir <code>if/for/def</code>, atau tanda kurung/kutip belum ditutup</td><td>Periksa baris yang disebut error dan 1 baris di atasnya</td></tr>
+  <tr><td><code>IndentationError</code></td><td>Spasi menjorok tidak sejajar atau tercampur antara Tab dan Spasi</td><td>Gunakan 4 spasi secara konsisten di setiap blok</td></tr>
+  <tr><td><code>NameError</code></td><td>Salah ketik nama variabel/fungsi (misal <code>prnt</code>) atau lupa membuat variabel dulu</td><td>Cocokkan ejaan huruf besar/kecil dengan variabel yang dibuat</td></tr>
+  <tr><td><code>ValueError</code></td><td><code>int("abc")</code> atau <code>int("")</code> (mengubah teks bukan angka menjadi bilangan)</td><td>Pastikan format pembacaan <code>input()</code> sesuai baris input soal</td></tr>
+  <tr><td><code>TypeError</code></td><td>Menggabungkan teks dan angka langsung, misal <code>"Skor: " + 90</code></td><td>Gunakan <code>f"Skor: {90}"</code> atau <code>str(90)</code></td></tr>
+  <tr><td><code>IndexError</code></td><td>Mengambil indeks list yang tidak ada (misal <code>data[3]</code> padahal isi list cuma 3)</td><td>Ingat indeks dimulai dari <code>0</code> sampai <code>len(data) - 1</code></td></tr>
+  <tr><td><code>KeyError</code></td><td>Mencari kunci yang tidak ada di dictionary (<code>kamus["X"]</code>)</td><td>Gunakan <code>kamus.get("X", nilai_default)</code></td></tr>
+  <tr><td><code>ZeroDivisionError</code></td><td>Membagi bilangan dengan angka <code>0</code></td><td>Cek dulu dengan <code>if pembagi != 0:</code> sebelum membagi</td></tr>
+</table>
+
+<h2>Sumber &amp; Rujukan Faktual</h2>
+<ol class="ref-list">
+  <li>Petunjuk Teknis (Juknis) Lomba Coding Python Penggalang (dokumen resmi panitia: 4 soal kepramukaan, Python 3.x, 120 menit, tim 2 orang, <code>input()</code> tanpa teks prompt, pengumpulan via Google Form).</li>
+  <li>Surat Keputusan Kwartir Nasional Gerakan Pramuka Nomor 198 Tahun 2011 tentang Petunjuk Penyelenggaraan Syarat Kecakapan Umum (SKU) Pramuka Penggalang (Ramu, Rakit, Terap — termasuk materi Kompas, 16 Arah Mata Angin, Azimuth/Back Azimuth, Menaksir, Sandi, Morse, dan Semaphore).</li>
+  <li>Capaian Pembelajaran Mata Pelajaran Informatika Fase D (SMP/MTs) Kurikulum Merdeka, Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi RI (elemen Berpikir Komputasional serta Algoritma dan Pemrograman).</li>
+  <li>Bebras Indonesia — Kategori Penggalang (SMP/MTs), <code>bebras.or.id</code> (penerapan 4 pilar Berpikir Komputasional).</li>
+  <li>Python Software Foundation — Dokumentasi &amp; Tutorial Resmi Python 3, <code>docs.python.org/3/tutorial/</code>.</li>
+</ol>
+
+</body>
+</html>
