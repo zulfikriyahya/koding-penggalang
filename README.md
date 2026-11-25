@@ -1,6 +1,6 @@
-# Koding Penggalang — Modul & Penguji Lomba Coding Python 3 (SMP/MTs)
+# Koding Penggalang — Modul, Installer & Penguji Lomba Coding Python 3 (SMP/MTs)
 
-Paket lengkap belajar mandiri, latihan simulasi, dan alat penguji otomatis **CLI & GUI** untuk persiapan **Lomba Coding Python Pramuka Penggalang** (usia 11–15 tahun / jenjang SMP–MTs) di Indonesia.
+Paket lengkap belajar mandiri, latihan simulasi, installer 1-klik (**Linux & Windows**), serta alat penguji otomatis **CLI & GUI** untuk persiapan **Lomba Coding Python Pramuka Penggalang** (usia 11–15 tahun / jenjang SMP–MTs) di Indonesia.
 
 Disusun secara faktual berdasarkan:
 - Petunjuk Teknis (Juknis) Lomba Coding Python Penggalang
@@ -8,6 +8,28 @@ Disusun secara faktual berdasarkan:
 - **Kurikulum Merdeka Informatika Fase D (SMP/MTs)** Kemendikbudristek
 - **Bebras Indonesia** kategori Penggalang
 - **Dokumentasi Resmi Python 3** (Python Software Foundation)
+
+---
+
+## Unduh & Pasang 1-Klik (GitHub Releases)
+
+Buka halaman **[Releases (`v1.0.0`)](https://github.com/zulfikriyahya/koding-penggalang/releases/latest)** untuk mengunduh:
+
+### 1. Installer Lengkap 1-Bundle (Python 3 + Sublime Text 4 + Helper Python + Modul PDF + Soal + Kunci + Penguji CLI & GUI)
+- **Windows 10 / 11:** Unduh `koding-penggalang-v1.0.0-windows.zip` → ekstrak → klik dua kali **`INSTALL_KODING_PENGGALANG.bat`**.
+- **Linux (Debian / Ubuntu / Mint / Fedora / Arch):** Unduh `KodingPenggalang-Installer-Linux-v1.0.0.run` (atau `koding-penggalang-v1.0.0-linux.tar.gz`) lalu jalankan:
+  ```bash
+  chmod +x KodingPenggalang-Installer-Linux-v1.0.0.run
+  ./KodingPenggalang-Installer-Linux-v1.0.0.run
+  ```
+  *(Tambahkan `--no-sublime` di Linux atau `-NoSublime` di PowerShell jika hanya ingin memasang modul & penguji tanpa Sublime Text.)*
+
+### 2. Unduh Langsung PDF, Contoh Soal & Kunci Jawaban (Tanpa Installer)
+Di halaman **[Releases](https://github.com/zulfikriyahya/koding-penggalang/releases/latest)** tersedia langsung file siap unduh:
+- `01_Modul_Belajar_Pemrograman_dan_Python3_Penggalang.pdf` *(7 halaman A4)*
+- `02_Referensi_Cepat_Sintaks_Python3_Saat_Lomba.pdf` *(2 halaman A4 bolak-balik)*
+- `03_Paket_Latihan_4_Soal_Lomba_Penggalang.pdf` *(2 halaman A4)*
+- `Paket-Soal-dan-Kunci-Jawaban-v1.0.0.zip` *(semua PDF + HTML + template `latihan/` + `kunci_jawaban/` + penguji offline)*
 
 ---
 
@@ -25,9 +47,10 @@ koding-penggalang/
 ├── latihan/                  # Template file jawaban siswa (soal1_ELANG.py .. soal4_ELANG.py)
 ├── kunci_jawaban/            # Kunci jawaban terverifikasi 100% (soal1_kunci.py .. soal4_kunci.py)
 ├── penguji/
-│   └── core.py               # Mesin penguji offline (20 kasus uji + validator Juknis)
+│   └── core.py               # Mesin penguji offline (20 kasus uji + validator Juknis AST)
+├── installer/                # Installer 1-klik Linux & Windows + konfigurasi Sublime Text Python Helper
 ├── cek_jawaban.py            # Penguji otomatis lewat terminal (CLI)
-└── cek_jawaban_gui.py        # Aplikasi penguji grafis desktop (GTK 3 GUI)
+└── cek_jawaban_gui.py        # Aplikasi penguji grafis desktop (GTK 3 Linux + Tkinter Windows)
 ```
 
 ---
@@ -48,33 +71,19 @@ koding-penggalang/
 ## Cara Menggunakan Penguji Otomatis
 
 ### 1. Mode Terminal (CLI)
-
 ```bash
-# Uji 1 file jawaban
-python3 cek_jawaban.py latihan/soal1_ELANG.py
-
-# Uji 1 nomor soal cepat (1, 2, 3, atau 4)
-python3 cek_jawaban.py 1
-
-# Uji file dengan nomor soal manual (jika nama file tidak memuat 'soalN')
-python3 cek_jawaban.py --soal 3 jawaban_morse.py
-
-# Uji seluruh folder siswa sekaligus (rekap nilai 0–100)
-python3 cek_jawaban.py latihan/
-python3 cek_jawaban.py kunci_jawaban/
+cek soal1_ELANG.py        # Uji 1 file jawaban (deteksi nomor soal otomatis)
+cek 1                     # Uji cepat Soal 1 (atau 2, 3, 4)
+cek 3 jawaban_morse.py    # Uji file dengan nomor soal manual
+cekall                    # Uji semua soal 1–4 + rekap skor 0–100
+cek folder_tim/           # Uji seluruh jawaban 1 tim + rekap skor 0–100
 ```
 
-### 2. Mode Aplikasi Desktop (GUI — GTK 3)
-
-Cocok untuk pembina maupun siswa agar bisa menguji file atau folder jawaban dengan satu klik, melihat status setiap kasus uji, serta membandingkan **Output Siswa** dan **Kunci Jawaban** secara berdampingan:
-
+### 2. Mode Aplikasi Desktop (GUI — Linux GTK 3 & Windows Tkinter)
 ```bash
-python3 cek_jawaban_gui.py
+cekgui
 ```
-
-### Kebutuhan Sistem
-- **Python 3.10+** (tanpa dependensi eksternal untuk mode CLI)
-- **PyGObject / GTK 3** (`python3-gi`, `gir1.2-gtk-3.0`) untuk mode GUI di Linux
+Atau klik pintasan Desktop **"Penguji Koding Penggalang"** yang dibuat otomatis oleh installer.
 
 ---
 

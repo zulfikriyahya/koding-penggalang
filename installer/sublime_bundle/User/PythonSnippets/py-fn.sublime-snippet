@@ -1,0 +1,9 @@
+<snippet>
+  <content><![CDATA[def ${1:nama_fungsi}(${2:param}: ${3:str}) -> ${4:None}:
+    """${5:Deskripsi fungsi.}"""
+    ${0:pass}
+]]></content>
+  <tabTrigger>fn</tabTrigger>
+  <scope>source.python</scope>
+  <description>Buat Fungsi Python 3 (type hint &amp; docstring)</description>
+</snippet>

@@ -1,0 +1,12 @@
+<snippet>
+  <content><![CDATA[def main() -> None:
+    ${0:pass}
+
+
+if __name__ == "__main__":
+    main()
+]]></content>
+  <tabTrigger>main</tabTrigger>
+  <scope>source.python</scope>
+  <description>Buat Fungsi Utama (if __name__ == "__main__")</description>
+</snippet>

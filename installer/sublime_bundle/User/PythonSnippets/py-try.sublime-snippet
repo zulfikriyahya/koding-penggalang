@@ -1,0 +1,10 @@
+<snippet>
+  <content><![CDATA[try:
+    ${1:pass}
+except ${2:Exception} as ${3:err}:
+    ${0:print(f"Terjadi kesalahan: {err}")}
+]]></content>
+  <tabTrigger>try</tabTrigger>
+  <scope>source.python</scope>
+  <description>Buat Blok Penanganan Error (try / except)</description>
+</snippet>

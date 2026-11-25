@@ -1,0 +1,187 @@
+{
+  "name": "GitHub Dark",
+  "author": "GitHub Dark Default for Sublime Text",
+  "variables": {
+    "bg": "#0d1117",
+    "bg_elevated": "#161b22",
+    "bg_selection": "#1f6feb44",
+    "border": "#30363d",
+    "fg": "#e6edf3",
+    "fg_muted": "#8b949e",
+    "gutter_fg": "#484f58",
+    "red": "#ff7b72",
+    "orange": "#ffa657",
+    "yellow": "#e3b341",
+    "green": "#7ee787",
+    "blue": "#79c0ff",
+    "light_blue": "#a5d6ff",
+    "accent": "#58a6ff",
+    "purple": "#d2a8ff",
+    "invalid_fg": "#ffa198",
+    "invalid_bg": "#490202"
+  },
+  "globals": {
+    "background": "var(bg)",
+    "foreground": "var(fg)",
+    "invisibles": "#30363d",
+    "caret": "var(accent)",
+    "block_caret": "#58a6ff55",
+    "line_highlight": "var(bg_elevated)",
+    "selection": "var(bg_selection)",
+    "selection_border": "#388bfd88",
+    "selection_corner_style": "round",
+    "selection_corner_radius": "3",
+    "inactive_selection": "#388bfd26",
+    "find_highlight": "#bb800966",
+    "find_highlight_foreground": "var(fg)",
+    "highlight": "#388bfd88",
+    "gutter": "var(bg)",
+    "gutter_foreground": "var(gutter_fg)",
+    "gutter_foreground_highlight": "var(fg)",
+    "guide": "#21262d",
+    "active_guide": "#30363d",
+    "stack_guide": "#21262d",
+    "brackets_foreground": "var(accent)",
+    "brackets_options": "underline",
+    "bracket_contents_foreground": "var(accent)",
+    "bracket_contents_options": "underline",
+    "tags_foreground": "var(green)",
+    "tags_options": "stippled_underline",
+    "line_diff_added": "#3fb950",
+    "line_diff_modified": "#d29922",
+    "line_diff_deleted": "#f85149",
+    "fold_marker": "var(fg_muted)",
+    "minimap_border": "#21262d",
+    "shadow": "#01040988"
+  },
+  "rules": [
+    {
+      "name": "Comment",
+      "scope": "comment, punctuation.definition.comment",
+      "foreground": "var(fg_muted)",
+      "font_style": "italic"
+    },
+    {
+      "name": "Keyword & Storage",
+      "scope": "keyword, storage, storage.type, storage.modifier, keyword.operator.word, keyword.operator.new, keyword.operator.expression",
+      "foreground": "var(red)"
+    },
+    {
+      "name": "Operators & Punctuation",
+      "scope": "keyword.operator, punctuation.separator, punctuation.terminator",
+      "foreground": "var(red)"
+    },
+    {
+      "name": "Strings",
+      "scope": "string, string.quoted, punctuation.definition.string",
+      "foreground": "var(light_blue)"
+    },
+    {
+      "name": "String Escape & Regexp",
+      "scope": "constant.character.escape, string.regexp",
+      "foreground": "var(blue)"
+    },
+    {
+      "name": "Numbers, Booleans, Constants",
+      "scope": "constant.numeric, constant.language, constant.other, support.constant, variable.other.constant",
+      "foreground": "var(blue)"
+    },
+    {
+      "name": "Functions & Methods",
+      "scope": "entity.name.function, meta.function-call entity.name.function, variable.function, support.function",
+      "foreground": "var(purple)"
+    },
+    {
+      "name": "Classes, Structs, Types",
+      "scope": "entity.name.class, entity.name.struct, entity.name.type, entity.name.interface, entity.name.enum, entity.other.inherited-class, support.type, support.class",
+      "foreground": "var(orange)"
+    },
+    {
+      "name": "Parameters & Special Variables",
+      "scope": "variable.parameter, variable.language",
+      "foreground": "var(orange)"
+    },
+    {
+      "name": "Variables & Properties",
+      "scope": "variable, variable.other, meta.object-literal.key",
+      "foreground": "var(fg)"
+    },
+    {
+      "name": "Object Properties & Fields",
+      "scope": "variable.other.property, variable.other.member, meta.property-name",
+      "foreground": "var(blue)"
+    },
+    {
+      "name": "HTML / XML Tags",
+      "scope": "entity.name.tag, punctuation.definition.tag",
+      "foreground": "var(green)"
+    },
+    {
+      "name": "HTML / XML Attributes",
+      "scope": "entity.other.attribute-name",
+      "foreground": "var(blue)"
+    },
+    {
+      "name": "CSS Properties & Values",
+      "scope": "support.type.property-name.css, meta.property-name.css",
+      "foreground": "var(blue)"
+    },
+    {
+      "name": "CSS Selectors",
+      "scope": "entity.other.attribute-name.class.css, entity.other.attribute-name.id.css",
+      "foreground": "var(purple)"
+    },
+    {
+      "name": "JSON / YAML Keys",
+      "scope": "support.type.property-name.json, entity.name.tag.yaml",
+      "foreground": "var(green)"
+    },
+    {
+      "name": "Markdown Headings",
+      "scope": "markup.heading, punctuation.definition.heading",
+      "foreground": "var(blue)",
+      "font_style": "bold"
+    },
+    {
+      "name": "Markdown Bold",
+      "scope": "markup.bold",
+      "foreground": "var(fg)",
+      "font_style": "bold"
+    },
+    {
+      "name": "Markdown Italic",
+      "scope": "markup.italic",
+      "foreground": "var(fg)",
+      "font_style": "italic"
+    },
+    {
+      "name": "Markdown Code & Links",
+      "scope": "markup.raw, markup.inline.raw, markup.underline.link",
+      "foreground": "var(light_blue)"
+    },
+    {
+      "name": "Diff Inserted",
+      "scope": "markup.inserted",
+      "foreground": "var(green)",
+      "background": "#033a16"
+    },
+    {
+      "name": "Diff Deleted",
+      "scope": "markup.deleted",
+      "foreground": "var(invalid_fg)",
+      "background": "#67060c"
+    },
+    {
+      "name": "Diff Changed",
+      "scope": "markup.changed",
+      "foreground": "var(orange)",
+      "background": "#5a1e02"
+    },
+    {
+      "name": "Invalid",
+      "scope": "invalid, invalid.illegal",
+      "foreground": "var(invalid_fg)",
+      "background": "var(invalid_bg)"
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+<snippet>
+  <content><![CDATA[def ${1:nama_method}(self${2:, param: str}) -> ${3:None}:
+    """${4:Deskripsi method.}"""
+    ${0:pass}
+]]></content>
+  <tabTrigger>meth</tabTrigger>
+  <scope>source.python</scope>
+  <description>Buat Method Class Python 3</description>
+</snippet>

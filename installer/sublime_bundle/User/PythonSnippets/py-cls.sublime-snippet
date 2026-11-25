@@ -1,0 +1,12 @@
+<snippet>
+  <content><![CDATA[class ${1:NamaClass}:
+    """${2:Deskripsi class.}"""
+
+    def __init__(self${3:, nama: str}) -> None:
+        ${4:self.nama = nama}
+        ${0}
+]]></content>
+  <tabTrigger>cls</tabTrigger>
+  <scope>source.python</scope>
+  <description>Buat Class Python 3 + __init__</description>
+</snippet>

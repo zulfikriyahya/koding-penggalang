@@ -1,0 +1,146 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Smart Python 3 Project Runner untuk Sublime Text (F5) & Terminal
+# - Otomatis deteksi atau membuatkan .venv (100% offline!)
+# - Otomatis install/update dependensi saat requirements.txt / pyproject.toml berubah
+# - Menampilkan penjelasan error runtime Python dalam Bahasa Indonesia (100% offline!)
+
+FORCE_UPDATE=0
+if [[ "${1:-}" == "--update" ]]; then
+  FORCE_UPDATE=1
+  shift
+fi
+
+TARGET_FILE="${1:-}"
+if [[ -z "$TARGET_FILE" || ! -f "$TARGET_FILE" ]]; then
+  echo "[py3-run] File Python tidak ditemukan: $TARGET_FILE" >&2
+  exit 1
+fi
+
+ABS_FILE="$(realpath "$TARGET_FILE")"
+FILE_DIR="$(dirname "$ABS_FILE")"
+HOME_REAL="$(realpath "$HOME")"
+
+find_project_root() {
+  local dir="$1"
+  while [[ "$dir" != "/" && "$dir" != "$HOME_REAL" ]]; do
+    if [[ -d "$dir/.venv" || -d "$dir/venv" || -f "$dir/requirements.txt" || -f "$dir/pyproject.toml" || -d "$dir/.git" ]]; then
+      echo "$dir"
+      return 0
+    fi
+    dir="$(dirname "$dir")"
+  done
+  echo "$1"
+}
+
+PROJECT_ROOT="$(find_project_root "$FILE_DIR")"
+
+# Pilih interpreter (fallback ke python3 sistem jika file di root $HOME atau /tmp)
+if [[ "$PROJECT_ROOT" == "$HOME_REAL" || "$PROJECT_ROOT" == "/tmp" || "$PROJECT_ROOT" == "/" ]]; then
+  RUN_PY="python3"
+  RUN_DIR="$FILE_DIR"
+else
+  if [[ -d "$PROJECT_ROOT/venv" && ! -d "$PROJECT_ROOT/.venv" ]]; then
+    VENV_DIR="$PROJECT_ROOT/venv"
+  else
+    VENV_DIR="$PROJECT_ROOT/.venv"
+  fi
+  VENV_PY="$VENV_DIR/bin/python"
+  VENV_PIP="$VENV_DIR/bin/pip"
+
+  if [[ ! -x "$VENV_PY" ]]; then
+    echo "==> [py3-run] Membuat virtual environment baru di: $VENV_DIR"
+    python3 -m venv "$VENV_DIR"
+  fi
+
+  STAMP_FILE="$VENV_DIR/.deps_hash"
+  REQ_FILE="$PROJECT_ROOT/requirements.txt"
+  PYPROJ_FILE="$PROJECT_ROOT/pyproject.toml"
+
+  CURRENT_HASH=""
+  [[ -f "$REQ_FILE" ]] && CURRENT_HASH="${CURRENT_HASH}$(sha256sum "$REQ_FILE" | awk '{print $1}')"
+  [[ -f "$PYPROJ_FILE" ]] && CURRENT_HASH="${CURRENT_HASH}$(sha256sum "$PYPROJ_FILE" | awk '{print $1}')"
+
+  SAVED_HASH=""
+  [[ -f "$STAMP_FILE" ]] && SAVED_HASH="$(cat "$STAMP_FILE" 2>/dev/null || true)"
+
+  if [[ -n "$CURRENT_HASH" && ( "$FORCE_UPDATE" -eq 1 || "$CURRENT_HASH" != "$SAVED_HASH" ) ]]; then
+    echo "==> [py3-run] Menyinkronkan dependensi ke $VENV_DIR..."
+    SYNC_OK=1
+    if [[ "$FORCE_UPDATE" -eq 1 ]]; then
+      "$VENV_PIP" install --upgrade pip >/dev/null 2>&1 || true
+    fi
+    if [[ -f "$REQ_FILE" ]]; then
+      "$VENV_PIP" install --upgrade -r "$REQ_FILE" || SYNC_OK=0
+    elif [[ -f "$PYPROJ_FILE" ]]; then
+      "$VENV_PIP" install --upgrade -e "$PROJECT_ROOT" || SYNC_OK=0
+    fi
+    if [[ "$SYNC_OK" -eq 1 ]]; then
+      printf '%s\n' "$CURRENT_HASH" > "$STAMP_FILE"
+      echo "==> [py3-run] Dependensi .venv terbarui."
+    else
+      echo "[!] [py3-run] Gagal update dependensi (sedang offline). Lanjut menjalankan dengan .venv saat ini..."
+    fi
+  fi
+
+  RUN_PY="$VENV_PY"
+  RUN_DIR="$PROJECT_ROOT"
+fi
+
+# Jalankan skrip & tangkap stderr agar jika terjadi error runtime, tampilkan penjelasan Bahasa Indonesia!
+ERR_LOG="$(mktemp)"
+trap 'rm -f "$ERR_LOG"' EXIT
+
+cd "$RUN_DIR"
+set +e
+"$RUN_PY" -u "$ABS_FILE" 2> >(tee "$ERR_LOG" >&2)
+EXIT_CODE=$?
+set -e
+
+if [[ "$EXIT_CODE" -ne 0 && -s "$ERR_LOG" ]]; then
+  LAST_LINE="$(tail -n 1 "$ERR_LOG")"
+  HINT=""
+  case "$LAST_LINE" in
+    SyntaxError:*)
+      HINT="Kesalahan sintaks Python: periksa tanda titik dua (:), tanda kurung (), atau kutip pada baris error." ;;
+    IndentationError:*|TabError:*)
+      HINT="Kesalahan indentasi: pastikan jarak spasi (4 spasi per blok) sejajar dan tidak bercampur Tab." ;;
+    NameError:*)
+      HINT="Nama variabel/fungsi belum dikenal (kemungkinan typo atau belum didefinisikan sebelum dipakai)." ;;
+    UnboundLocalError:*)
+      HINT="Variabel lokal dipakai sebelum diberi nilai di dalam fungsi tersebut." ;;
+    TypeError:*)
+      HINT="Tipe data tidak cocok (misal menjumlahkan teks/str dengan angka/int, atau jumlah argumen fungsi salah)." ;;
+    ValueError:*)
+      HINT="Nilai data tidak valid untuk operasi ini (misal mengubah teks huruf menjadi int())." ;;
+    KeyError:*)
+      HINT="Key tidak ditemukan di dalam dictionary. Gunakan dict.get('key', default) agar tidak error." ;;
+    IndexError:*)
+      HINT="Indeks list/tuple melebihi jumlah elemen yang ada (ingat: indeks dimulai dari 0)." ;;
+    AttributeError:*)
+      HINT="Objek tersebut tidak memiliki method/atribut itu (cek typo nama method atau pastikan nilainya bukan None)." ;;
+    ZeroDivisionError:*)
+      HINT="Tidak bisa membagi angka dengan nol (0). Periksa penyebut sebelum membagi." ;;
+    FileNotFoundError:*)
+      HINT="File atau folder yang diminta tidak ditemukan. Cek kembali nama file dan lokasinya." ;;
+    PermissionError:*)
+      HINT="Izin akses ditolak saat membuka/menulis file atau folder tersebut." ;;
+    ModuleNotFoundError:*|ImportError:*)
+      HINT="Modul/library belum terpasang di .venv. Tambahkan ke requirements.txt lalu tekan F5 (saat online)." ;;
+    NotImplementedError*)
+      HINT="Fungsi masih berupa kerangka (NotImplementedError). Silakan isi logika di dalam fungsi tersebut." ;;
+    RecursionError:*)
+      HINT="Fungsi memanggil dirinya sendiri terlalu dalam (rekursi tanpa kondisi berhenti)." ;;
+    KeyboardInterrupt*)
+      HINT="Eksekusi program dihentikan secara manual." ;;
+  esac
+  if [[ -n "$HINT" ]]; then
+    echo "" >&2
+    echo "----------------------------------------------" >&2
+    echo "[Penjelasan Error] $HINT" >&2
+    echo "----------------------------------------------" >&2
+  fi
+fi
+
+exit "$EXIT_CODE"

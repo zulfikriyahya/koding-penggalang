@@ -1,0 +1,86 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Runner Python 3 Interaktif (LXTerminal) — Mendukung input() penuh untuk Lomba & Latihan
+# - Tidak membuat folder .venv baru agar folder soal lomba tetap bersih & eksekusi instan
+# - Jika proyek sudah punya .venv, otomatis memakainya; jika tidak, langsung pakai python3 sistem
+# - Menampilkan penjelasan error runtime dalam Bahasa Indonesia (100% offline)
+
+TARGET_FILE="${1:-}"
+if [[ -z "$TARGET_FILE" || ! -f "$TARGET_FILE" ]]; then
+  echo "[Py3] File tidak ditemukan: $TARGET_FILE"
+  read -r -p "Tekan Enter untuk menutup..."
+  exit 1
+fi
+
+ABS_FILE="$(realpath "$TARGET_FILE")"
+FILE_DIR="$(dirname "$ABS_FILE")"
+HOME_REAL="$(realpath "$HOME")"
+
+# Deteksi .venv yang SUDAH ada (tanpa membuat baru!)
+RUN_PY="python3"
+CUR_DIR="$FILE_DIR"
+while [[ "$CUR_DIR" != "/" && "$CUR_DIR" != "$HOME_REAL" ]]; do
+  if [[ -x "$CUR_DIR/.venv/bin/python" ]]; then
+    RUN_PY="$CUR_DIR/.venv/bin/python"
+    break
+  elif [[ -x "$CUR_DIR/venv/bin/python" ]]; then
+    RUN_PY="$CUR_DIR/venv/bin/python"
+    break
+  fi
+  CUR_DIR="$(dirname "$CUR_DIR")"
+done
+
+ERR_LOG="$(mktemp)"
+trap 'rm -f "$ERR_LOG"' EXIT
+
+clear
+echo "=============================================="
+echo "  Menjalankan: $(basename "$ABS_FILE")"
+echo "  (Ketik input lalu Enter jika program meminta input)"
+echo "=============================================="
+echo ""
+
+cd "$FILE_DIR"
+set +e
+"$RUN_PY" -u "$ABS_FILE" 2> >(tee "$ERR_LOG" >&2)
+EXIT_CODE=$?
+set -e
+
+if [[ "$EXIT_CODE" -ne 0 && -s "$ERR_LOG" ]]; then
+  LAST_LINE="$(tail -n 1 "$ERR_LOG")"
+  HINT=""
+  case "$LAST_LINE" in
+    SyntaxError:*)        HINT="Kesalahan sintaks: periksa tanda titik dua (:), kurung (), atau kutip." ;;
+    IndentationError:*|TabError:*) HINT="Kesalahan indentasi: pastikan spasi sejajar (4 spasi per blok)." ;;
+    NameError:*)          HINT="Nama variabel/fungsi belum dikenal (cek typo atau belum didefinisikan)." ;;
+    UnboundLocalError:*)  HINT="Variabel lokal dipakai sebelum diberi nilai di dalam fungsi." ;;
+    TypeError:*)          HINT="Tipe data tidak cocok (misal teks/str digabung angka/int)." ;;
+    ValueError:*)         HINT="Nilai input/konversi tidak valid (misal int() menerima huruf/kosong)." ;;
+    KeyError:*)           HINT="Key tidak ada di dictionary. Gunakan dict.get('key', default)." ;;
+    IndexError:*)         HINT="Indeks list melebihi jumlah data (indeks mulai dari 0)." ;;
+    AttributeError:*)     HINT="Method/atribut tidak ada pada objek tersebut (cek typo atau nilai None)." ;;
+    ZeroDivisionError:*)  HINT="Tidak bisa membagi angka dengan nol (0)." ;;
+    EOFError*)            HINT="Input kurang dari yang diminta program (terlalu banyak memanggil input())." ;;
+    FileNotFoundError:*)  HINT="File tidak ditemukan. Cek kembali nama dan lokasi file." ;;
+    ModuleNotFoundError:*|ImportError:*) HINT="Modul belum terpasang di Python." ;;
+    NotImplementedError*) HINT="Fungsi masih berupa kerangka kosong (NotImplementedError)." ;;
+    RecursionError:*)     HINT="Fungsi memanggil dirinya sendiri terlalu dalam tanpa batas berhenti." ;;
+  esac
+  if [[ -n "$HINT" ]]; then
+    echo ""
+    echo "----------------------------------------------"
+    echo "[Penjelasan Error] $HINT"
+    echo "----------------------------------------------"
+  fi
+fi
+
+echo ""
+echo "=============================================="
+if [[ "$EXIT_CODE" -eq 0 ]]; then
+  echo "  Selesai tanpa error (exit code: 0)"
+else
+  echo "  Program berhenti dengan error (exit code: $EXIT_CODE)"
+fi
+echo "=============================================="
+read -r -p "Tekan Enter untuk menutup terminal..."

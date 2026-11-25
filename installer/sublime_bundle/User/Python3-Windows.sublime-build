@@ -1,0 +1,15 @@
+{
+  "cmd": ["python", "-u", "$file"],
+  "file_regex": "^[ ]*File \"(...*?)\", line ([0-9]*)",
+  "selector": "source.python",
+  "env": {
+    "PYTHONIOENCODING": "utf-8",
+    "PYTHONUNBUFFERED": "1"
+  },
+  "variants": [
+    {
+      "name": "Jalankan di Terminal Interaktif (untuk input() / Lomba)",
+      "shell_cmd": "start \"Python 3 - $file_name\" cmd /k \"python -u \"$file\" & echo. & pause\""
+    }
+  ]
+}

@@ -1,0 +1,186 @@
+{
+  "name": "GitHub Dark Protanopia & Deuteranopia",
+  "author": "GitHub Dark Colorblind (Protanopia & Deuteranopia) for Sublime Text",
+  "variables": {
+    "bg": "#0d1117",
+    "bg_elevated": "#161b22",
+    "bg_selection": "#1f6feb44",
+    "border": "#30363d",
+    "fg": "#e6edf3",
+    "fg_muted": "#8b949e",
+    "gutter_fg": "#484f58",
+    "orange_bright": "#fdac54",
+    "orange_deep": "#ec8e2c",
+    "gold": "#f0b72f",
+    "blue_bright": "#79c0ff",
+    "blue_accent": "#58a6ff",
+    "blue_ice": "#a5d6ff",
+    "purple": "#d2a8ff",
+    "invalid_fg": "#ffd6a5",
+    "invalid_bg": "#5c2200"
+  },
+  "globals": {
+    "background": "var(bg)",
+    "foreground": "var(fg)",
+    "invisibles": "#30363d",
+    "caret": "var(blue_accent)",
+    "block_caret": "#58a6ff55",
+    "line_highlight": "var(bg_elevated)",
+    "selection": "var(bg_selection)",
+    "selection_border": "#388bfd88",
+    "selection_corner_style": "round",
+    "selection_corner_radius": "3",
+    "inactive_selection": "#388bfd26",
+    "find_highlight": "#bb800966",
+    "find_highlight_foreground": "var(fg)",
+    "highlight": "#388bfd88",
+    "gutter": "var(bg)",
+    "gutter_foreground": "var(gutter_fg)",
+    "gutter_foreground_highlight": "var(fg)",
+    "guide": "#21262d",
+    "active_guide": "#30363d",
+    "stack_guide": "#21262d",
+    "brackets_foreground": "var(blue_accent)",
+    "brackets_options": "underline",
+    "bracket_contents_foreground": "var(blue_accent)",
+    "bracket_contents_options": "underline",
+    "tags_foreground": "var(blue_accent)",
+    "tags_options": "stippled_underline",
+    "line_diff_added": "#58a6ff",
+    "line_diff_modified": "#d29922",
+    "line_diff_deleted": "#ec8e2c",
+    "fold_marker": "var(fg_muted)",
+    "minimap_border": "#21262d",
+    "shadow": "#01040988"
+  },
+  "rules": [
+    {
+      "name": "Comment",
+      "scope": "comment, punctuation.definition.comment",
+      "foreground": "var(fg_muted)",
+      "font_style": "italic"
+    },
+    {
+      "name": "Keyword & Storage (Colorblind Orange)",
+      "scope": "keyword, storage, storage.type, storage.modifier, keyword.operator.word, keyword.operator.new, keyword.operator.expression",
+      "foreground": "var(orange_bright)"
+    },
+    {
+      "name": "Operators & Punctuation",
+      "scope": "keyword.operator, punctuation.separator, punctuation.terminator",
+      "foreground": "var(orange_bright)"
+    },
+    {
+      "name": "Strings",
+      "scope": "string, string.quoted, punctuation.definition.string",
+      "foreground": "var(blue_ice)"
+    },
+    {
+      "name": "String Escape & Regexp",
+      "scope": "constant.character.escape, string.regexp",
+      "foreground": "var(blue_bright)"
+    },
+    {
+      "name": "Numbers, Booleans, Constants",
+      "scope": "constant.numeric, constant.language, constant.other, support.constant, variable.other.constant",
+      "foreground": "var(blue_bright)"
+    },
+    {
+      "name": "Functions & Methods",
+      "scope": "entity.name.function, meta.function-call entity.name.function, variable.function, support.function",
+      "foreground": "var(purple)"
+    },
+    {
+      "name": "Classes, Structs, Types (Colorblind Gold)",
+      "scope": "entity.name.class, entity.name.struct, entity.name.type, entity.name.interface, entity.name.enum, entity.other.inherited-class, support.type, support.class",
+      "foreground": "var(gold)"
+    },
+    {
+      "name": "Parameters & Special Variables",
+      "scope": "variable.parameter, variable.language",
+      "foreground": "var(orange_bright)"
+    },
+    {
+      "name": "Variables",
+      "scope": "variable, variable.other, meta.object-literal.key",
+      "foreground": "var(fg)"
+    },
+    {
+      "name": "Object Properties & Fields",
+      "scope": "variable.other.property, variable.other.member, meta.property-name",
+      "foreground": "var(blue_bright)"
+    },
+    {
+      "name": "HTML / XML Tags (Colorblind Blue)",
+      "scope": "entity.name.tag, punctuation.definition.tag",
+      "foreground": "var(blue_accent)"
+    },
+    {
+      "name": "HTML / XML Attributes",
+      "scope": "entity.other.attribute-name",
+      "foreground": "var(blue_bright)"
+    },
+    {
+      "name": "CSS Properties & Values",
+      "scope": "support.type.property-name.css, meta.property-name.css",
+      "foreground": "var(blue_bright)"
+    },
+    {
+      "name": "CSS Selectors",
+      "scope": "entity.other.attribute-name.class.css, entity.other.attribute-name.id.css",
+      "foreground": "var(purple)"
+    },
+    {
+      "name": "JSON / YAML Keys (Colorblind Blue)",
+      "scope": "support.type.property-name.json, entity.name.tag.yaml",
+      "foreground": "var(blue_accent)"
+    },
+    {
+      "name": "Markdown Headings",
+      "scope": "markup.heading, punctuation.definition.heading",
+      "foreground": "var(blue_bright)",
+      "font_style": "bold"
+    },
+    {
+      "name": "Markdown Bold",
+      "scope": "markup.bold",
+      "foreground": "var(fg)",
+      "font_style": "bold"
+    },
+    {
+      "name": "Markdown Italic",
+      "scope": "markup.italic",
+      "foreground": "var(fg)",
+      "font_style": "italic"
+    },
+    {
+      "name": "Markdown Code & Links",
+      "scope": "markup.raw, markup.inline.raw, markup.underline.link",
+      "foreground": "var(blue_ice)"
+    },
+    {
+      "name": "Diff Inserted (Colorblind Blue)",
+      "scope": "markup.inserted",
+      "foreground": "var(blue_bright)",
+      "background": "#0c2d6b"
+    },
+    {
+      "name": "Diff Deleted (Colorblind Orange)",
+      "scope": "markup.deleted",
+      "foreground": "var(orange_bright)",
+      "background": "#4d2100"
+    },
+    {
+      "name": "Diff Changed (Colorblind Gold)",
+      "scope": "markup.changed",
+      "foreground": "var(gold)",
+      "background": "#3b2300"
+    },
+    {
+      "name": "Invalid",
+      "scope": "invalid, invalid.illegal",
+      "foreground": "var(invalid_fg)",
+      "background": "var(invalid_bg)"
+    }
+  ]
+}
